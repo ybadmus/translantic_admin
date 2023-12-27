@@ -1,0 +1,35 @@
+# SQLite. Versions 3.8.0 and up are supported.
+#   gem install mysql2
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem "mysql2"
+#
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['MYSQL_HOST'] %>
+  port: <%= ENV['MYSQL_PORT'] %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: translantics_development
+
+test:
+  <<: *default
+  database: translantics_test
+
+production:
+  <<: *default
+  database: translantics_production
+  username: translantics
+  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+
+staging:
+  <<: *default
+  database: momosecure_staging
+  username: translantics
+  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
