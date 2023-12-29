@@ -5,7 +5,7 @@ class CreateShippingDetails < ActiveRecord::Migration[7.0]
       t.decimal(:length, null: false, precision: 5, scale: 3, default: 0.0)
       t.decimal(:height, null: false, precision: 5, scale: 3, default: 0.0)
       t.decimal(:width, null: false, precision: 5, scale: 3, default: 0.0)
-      t.text(:description, null: false, default: '')
+      t.text(:description, null: false)
       t.boolean(:dutiable, default: false)
       t.decimal(:weight, null: false, precision: 5, scale: 3, default: 0.0)
       t.integer(:quantity, default: 0)
