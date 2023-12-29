@@ -6,6 +6,7 @@ class CreateShippingInformations < ActiveRecord::Migration[7.0]
       t.string(:address_line1, null: false)
       t.string(:address_line2)
       t.references(:location, null: false)
+      t.boolean(:is_deleted, default: false, null: false)
 
       t.timestamps
     end

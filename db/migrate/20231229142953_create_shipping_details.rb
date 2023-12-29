@@ -15,6 +15,7 @@ class CreateShippingDetails < ActiveRecord::Migration[7.0]
       t.references(:departure, null: false, foreign_key: { to_table: 'locations' })
       t.references(:shipping_information, null: false)
       t.decimal(:declared_value, null: false, precision: 5, scale: 3, default: 0.0)
+      t.boolean(:is_deleted, default: false, null: false)
 
       t.timestamps
     end

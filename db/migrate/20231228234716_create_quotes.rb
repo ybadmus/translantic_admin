@@ -11,6 +11,7 @@ class CreateQuotes < ActiveRecord::Migration[7.0]
       t.decimal(:width, null: false, precision: 5, scale: 3, default: 0.0)
       t.decimal(:height, null: false, precision: 5, scale: 3, default: 0.0)
       t.text(:message, null: false)
+      t.boolean(:is_deleted, default: false, null: false)
 
       t.timestamps
     end
