@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  email       :string(255)      default(""), not null
+#  is_deleted  :boolean          default(FALSE), not null
 #  name        :string(255)      not null
 #  phone       :string(255)
 #  type        :string(255)      not null

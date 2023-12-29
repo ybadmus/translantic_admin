@@ -8,6 +8,7 @@
 #  dutiable                :boolean          default(FALSE)
 #  frieght_type            :integer          default("air"), not null
 #  height                  :decimal(5, 3)    default(0.0), not null
+#  is_deleted              :boolean          default(FALSE), not null
 #  length                  :decimal(5, 3)    default(0.0), not null
 #  quantity                :integer          default(0)
 #  weight                  :decimal(5, 3)    default(0.0), not null

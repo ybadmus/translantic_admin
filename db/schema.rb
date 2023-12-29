@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.string "email", default: "", null: false
     t.bigint "location_id", null: false
     t.string "phone"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_customers_on_location_id"
@@ -25,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
   create_table "incoterms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "abbr", limit: 3, null: false
     t.string "description", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.string "state", default: ""
     t.string "zip_code", limit: 5, default: ""
     t.string "country", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.decimal "width", precision: 5, scale: 3, default: "0.0", null: false
     t.decimal "height", precision: 5, scale: 3, default: "0.0", null: false
     t.text "message", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["departure_id"], name: "index_quotes_on_departure_id"
@@ -71,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.bigint "departure_id", null: false
     t.bigint "shipping_information_id", null: false
     t.decimal "declared_value", precision: 5, scale: 3, default: "0.0", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["current_location_id"], name: "index_shipping_details_on_current_location_id"
@@ -86,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.string "address_line1", null: false
     t.string "address_line2"
     t.bigint "location_id", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_shipping_informations_on_customer_id"

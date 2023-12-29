@@ -6,6 +6,7 @@
 #  address_line1 :string(255)      not null
 #  address_line2 :string(255)
 #  company_name  :string(255)
+#  is_deleted    :boolean          default(FALSE), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  customer_id   :bigint           not null
