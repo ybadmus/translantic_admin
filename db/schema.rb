@@ -10,7 +10,92 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_26_222433) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
+  create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "type", null: false
+    t.string "name", null: false
+    t.string "email", default: "", null: false
+    t.string "phone"
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "incoterms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "abbr", limit: 3, null: false
+    t.string "description", null: false
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "city", null: false
+    t.string "state", default: ""
+    t.string "zip_code", limit: 5, default: ""
+    t.string "country", null: false
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quotes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "frieght_type", limit: 1, default: 1, null: false
+    t.integer "status", limit: 1, default: 1, null: false
+    t.bigint "departure_id", null: false
+    t.bigint "destination_id", null: false
+    t.bigint "incoterm_id", null: false
+    t.decimal "total_gross_weight", precision: 5, scale: 2, default: "0.0", null: false
+    t.decimal "length", precision: 5, scale: 2, default: "0.0", null: false
+    t.decimal "width", precision: 5, scale: 2, default: "0.0", null: false
+    t.decimal "height", precision: 5, scale: 2, default: "0.0", null: false
+    t.text "message", null: false
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["departure_id"], name: "index_quotes_on_departure_id"
+    t.index ["destination_id"], name: "index_quotes_on_destination_id"
+    t.index ["incoterm_id"], name: "index_quotes_on_incoterm_id"
+  end
+
+  create_table "shipping_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "frieght_type", limit: 1, default: 1, null: false
+    t.decimal "length", precision: 5, scale: 2, default: "0.0", null: false
+    t.decimal "height", precision: 5, scale: 2, default: "0.0", null: false
+    t.decimal "width", precision: 5, scale: 2, default: "0.0", null: false
+    t.text "description", null: false
+    t.boolean "dutiable", default: false
+    t.decimal "weight", precision: 5, scale: 2, default: "0.0", null: false
+    t.integer "quantity", default: 0
+    t.bigint "current_location_id", null: false
+    t.bigint "shipper_id", null: false
+    t.bigint "incoterm_id", null: false
+    t.bigint "departure_id", null: false
+    t.bigint "shipping_information_id", null: false
+    t.decimal "declared_value", precision: 9, scale: 2, default: "0.0", null: false
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["current_location_id"], name: "index_shipping_details_on_current_location_id"
+    t.index ["departure_id"], name: "index_shipping_details_on_departure_id"
+    t.index ["incoterm_id"], name: "index_shipping_details_on_incoterm_id"
+    t.index ["shipper_id"], name: "index_shipping_details_on_shipper_id"
+    t.index ["shipping_information_id"], name: "index_shipping_details_on_shipping_information_id"
+  end
+
+  create_table "shipping_informations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "receiver_id", null: false
+    t.string "company_name"
+    t.string "address_line1", null: false
+    t.string "address_line2"
+    t.bigint "location_id", null: false
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_shipping_informations_on_location_id"
+    t.index ["receiver_id"], name: "index_shipping_informations_on_receiver_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -27,4 +112,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_26_222433) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "quotes", "locations", column: "departure_id"
+  add_foreign_key "quotes", "locations", column: "destination_id"
+  add_foreign_key "shipping_details", "customers", column: "shipper_id"
+  add_foreign_key "shipping_details", "locations", column: "current_location_id"
+  add_foreign_key "shipping_details", "locations", column: "departure_id"
+  add_foreign_key "shipping_informations", "customers", column: "receiver_id"
 end
