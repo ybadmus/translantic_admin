@@ -4,13 +4,13 @@
 #
 #  id                 :bigint           not null, primary key
 #  frieght_type       :integer          default("air"), not null
-#  height             :decimal(5, 3)    default(0.0), not null
+#  height             :decimal(5, 2)    default(0.0), not null
 #  is_deleted         :boolean          default(FALSE), not null
-#  length             :decimal(5, 3)    default(0.0), not null
+#  length             :decimal(5, 2)    default(0.0), not null
 #  message            :text(65535)      not null
 #  status             :integer          default("submitted"), not null
-#  total_gross_weight :decimal(5, 3)    default(0.0), not null
-#  width              :decimal(5, 3)    default(0.0), not null
+#  total_gross_weight :decimal(5, 2)    default(0.0), not null
+#  width              :decimal(5, 2)    default(0.0), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  departure_id       :bigint           not null

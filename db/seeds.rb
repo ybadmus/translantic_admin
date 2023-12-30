@@ -16,7 +16,7 @@ Shipper.create({ name: 'Shipper 2', email: "#{Faker::Name.first_name}.#{Faker::N
 
 Shipper.create({ name: 'Shipper 3', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
 
-Receiver.create({ name: 'Receiver 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", location_id: Location.first.id, phone: Faker::PhoneNumber.phone_number })
+Receiver.create({ name: 'Receiver 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
 
 Receiver.create({ name: 'Receiver 2', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
 
