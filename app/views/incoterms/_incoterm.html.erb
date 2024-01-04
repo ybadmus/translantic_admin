@@ -1,0 +1,9 @@
+<div id="<%= dom_id incoterm %>">
+  <% if action_name != "show" %>
+    <div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 mb-5">
+      <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= incoterm.abbr %></h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400"><%= incoterm.description %></p>
+    </div>
+    <hr class="mt-6">
+  <% end %>
+</div>
