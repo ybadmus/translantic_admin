@@ -4,6 +4,7 @@
 #
 
 Rails.application.routes.draw do
+  resources :incoterms, only: :index
   resources :shipments
   resources :quotes
   resources :locations

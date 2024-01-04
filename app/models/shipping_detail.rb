@@ -40,7 +40,7 @@ class ShippingDetail < ApplicationRecord
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
 
-  belongs_to :shipper,  class_name: 'Customer', optional: false
+  belongs_to :shipper, class_name: 'Customer', optional: false
   belongs_to :current_location, class_name: 'Location', optional: false
   belongs_to :incoterm, optional: false
   belongs_to :departure, class_name: 'Location', optional: false
