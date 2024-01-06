@@ -1,7 +1,17 @@
-<div id="<%= dom_id location %>">
-  <% if action_name != "show" %>
-    <%= link_to "Show this location", location, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this location", edit_location_path(location), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6 mb-6">
-  <% end %>
-</div>
+<tr id="<%= "#{dom_id(location)}_row" %>">
+
+  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+      <%= location.country %>
+  </th>
+  <td class="px-6 py-4">
+      <%= location.city %>
+  </td>
+  <td class="px-6 py-4">
+      <%= location.state %>
+  </td>
+  <td class="px-6 py-4">
+    <%= link_to "Edit", edit_location_path(location), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+    <%= link_to "Destroy", location, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "font-medium text-red-600 dark:text-red-500 hover:underline" %>
+  </td>
+
+</tr>
