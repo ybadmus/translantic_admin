@@ -1,0 +1,3 @@
+<%= turbo_stream.remove "#{dom_id(@location)}_row" %>
+
+<%= turbo_stream.append 'locations', partial: 'locations/location', locals: { location: @location } %>
