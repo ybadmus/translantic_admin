@@ -25,10 +25,10 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to location_url(@location), notice: "Location was successfully created." }
+        format.html { redirect_to new_location_path, notice: "Location was successfully created." }
         format.json { render :show, status: :created, location: @location }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :bad_request }
         format.json { render json: @location.errors, status: :unprocessable_entity }
       end
     end
@@ -38,7 +38,7 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to location_url(@location), notice: "Location was successfully updated." }
+        format.html { redirect_to locations_url(@location), notice: "Location was successfully updated." }
         format.json { render :show, status: :ok, location: @location }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,6 +52,7 @@ class LocationsController < ApplicationController
     @location.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@location)}_row") }
       format.html { redirect_to locations_url, notice: "Location was successfully destroyed." }
       format.json { head :no_content }
     end
@@ -65,6 +66,6 @@ class LocationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def location_params
-      params.fetch(:location, {})
+      params.require(:location).permit(:country, :city, :state)
     end
 end
