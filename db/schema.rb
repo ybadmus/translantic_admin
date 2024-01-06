@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
   create_table "locations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "city", null: false
     t.string "state", default: ""
-    t.string "zip_code", limit: 5, default: ""
+    t.string "code", limit: 5, default: ""
     t.string "country", null: false
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
