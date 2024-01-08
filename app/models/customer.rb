@@ -14,7 +14,5 @@
 class Customer < ApplicationRecord
   include DestroyRecord
 
-  belongs_to :location, optional: true
-
   validates :name, :email, presence: true
 end

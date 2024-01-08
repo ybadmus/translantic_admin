@@ -13,6 +13,7 @@ class QuotesController < ApplicationController
   # GET /quotes/new
   def new
     @quote = Quote.new
+    @quote.build_quoter
   end
 
   # GET /quotes/1/edit
@@ -23,9 +24,15 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new(quote_params)
 
+    departure = Location.find_or_create_by(city: quote_params[:departure_city])
+    destination = Location.find_or_create_by(city: quote_params[:destination_city])
+
+    @quote.departure_id = departure.id
+    @quote.destination_id = destination.id
+
     respond_to do |format|
       if @quote.save
-        format.html { redirect_to quote_url(@quote), notice: "Quote was successfully created." }
+        format.html { redirect_to new_quote_path, notice: "Quote was successfully created." }
         format.json { render :show, status: :created, location: @quote }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,6 +43,12 @@ class QuotesController < ApplicationController
 
   # PATCH/PUT /quotes/1 or /quotes/1.json
   def update
+    departure = Location.find_or_create_by(city: quote_params[:departure_city])
+    destination = Location.find_or_create_by(city: quote_params[:destination_city])
+
+    @quote.departure_id = departure.id
+    @quote.destination_id = destination.id
+
     respond_to do |format|
       if @quote.update(quote_params)
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully updated." }
@@ -52,6 +65,7 @@ class QuotesController < ApplicationController
     @quote.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@quote)}_row") }
       format.html { redirect_to quotes_url, notice: "Quote was successfully destroyed." }
       format.json { head :no_content }
     end
@@ -65,6 +79,7 @@ class QuotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quote_params
-      params.fetch(:quote, {})
+      params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, :destination_city, :departure_city,  quoter_attributes: %i[id name email phone type])
+
     end
 end
