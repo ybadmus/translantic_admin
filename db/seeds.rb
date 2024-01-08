@@ -10,23 +10,29 @@ locations = [{ city: 'Accra', state: 'Greater Accra Region', country: 'Ghana' },
 Incoterm.create!(incoterms)
 Location.create!(locations)
 
-Shipper.create({ name: 'Shipper 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Shipper.create({ name: 'Shipper 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Shipper.create({ name: 'Shipper 2', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Shipper.create({ name: 'Shipper 2', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Shipper.create({ name: 'Shipper 3', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Shipper.create({ name: 'Shipper 3', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Receiver.create({ name: 'Receiver 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Receiver.create({ name: 'Receiver 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Receiver.create({ name: 'Receiver 2', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Receiver.create({ name: 'Receiver 2', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Receiver.create({ name: 'Receiver 3', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Receiver.create({ name: 'Receiver 3', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 1', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Quoter.create({ name: 'Quoter 1', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 2', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Quoter.create({ name: 'Quoter 2', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 3', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.phone_number })
+Quoter.create({ name: 'Quoter 3', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+
+Quoter.create({ name: 'Quoter 4', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+
+Quoter.create({ name: 'Quoter 5', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+
+Quoter.create({ name: 'Quoter 6', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
 ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name, receiver_id: Receiver.first.id, location_id: Location.second.id })
 
@@ -34,11 +40,17 @@ ShippingInformation.create({ address_line1: Faker::Address.full_address, company
 
 ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name, receiver_id: Receiver.last.id, location_id: Location.third.id  })
 
-Quote.create({ frieght_type: :air, status: :submitted, height: 15.00, width: 35.00, length: 90.00, message: Faker::Lorem.paragraphs, total_gross_weight: 13.00, departure_id: Location.first.id, destination_id: Location.last.id, incoterm_id: Incoterm.first.id })
+Quote.create({ frieght_type: :air, status: :submitted, height: 15.00, width: 35.00, length: 90.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 13.00, departure_id: Location.first.id, destination_id: Location.last.id, incoterm_id: Incoterm.first.id, quoter_id: Quoter.first.id })
 
-Quote.create({ frieght_type: :sea, status: :reviewed, height: 20.00, width: 34.00, length: 75.00, message: Faker::Lorem.paragraphs, total_gross_weight: 35.00, departure_id: Location.second.id, destination_id: Location.third.id, incoterm_id: Incoterm.second.id })
+Quote.create({ frieght_type: :sea, status: :reviewed, height: 20.00, width: 34.00, length: 75.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 35.00, departure_id: Location.second.id, destination_id: Location.third.id, incoterm_id: Incoterm.second.id,quoter_id: Quoter.second.id })
 
-Quote.create({ frieght_type: :land, status: :responded, height: 10.00, width: 32.00, length: 50.00, message: Faker::Lorem.paragraphs, total_gross_weight: 58.00, departure_id: Location.last.id, destination_id: Location.fourth.id, incoterm_id: Incoterm.last.id })
+Quote.create({ frieght_type: :land, status: :responded, height: 10.00, width: 32.00, length: 50.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 58.00, departure_id: Location.fifth.id, destination_id: Location.fourth.id, incoterm_id: Incoterm.last.id, quoter_id: Quoter.third.id })
+
+Quote.create({ frieght_type: :land, status: :responded, height: 90.00, width: 320.00, length: 150.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 58.00, departure_id: Location.find(6).id, destination_id: Location.find(11).id, incoterm_id: Incoterm.last.id, quoter_id: Quoter.third.id })
+
+Quote.create({ frieght_type: :land, status: :responded, height: 60.00, width: 312.00, length: 30.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 58.00, departure_id: Location.find(7).id, destination_id: Location.find(9).id, incoterm_id: Incoterm.last.id, quoter_id: Quoter.third.id })
+
+Quote.create({ frieght_type: :land, status: :responded, height: 100.00, width: 200.00, length: 90.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 58.00, departure_id: Location.find(8).id, destination_id: Location.find(10).id, incoterm_id: Incoterm.last.id, quoter_id: Quoter.third.id })
 
 ShippingDetail.create({ declared_value: 10000.00, description: Faker::Lorem.paragraphs, dutiable: true, frieght_type: :sea, height: 15.00, width: 35.00, length: 90.00, quantity: 5, current_location_id: Location.first.id, shipper_id: Shipper.first.id, departure_id: Location.third.id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.first.id })
 

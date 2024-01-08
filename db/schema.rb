@@ -33,18 +33,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.string "city", null: false
     t.string "state", default: ""
     t.string "code", limit: 5, default: ""
-    t.string "country", null: false
+    t.string "country", default: ""
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city"], name: "index_locations_on_city", unique: true
   end
 
   create_table "quotes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "frieght_type", limit: 1, default: 1, null: false
-    t.integer "status", limit: 1, default: 1, null: false
+    t.integer "frieght_type", limit: 1, default: 0, null: false
+    t.integer "status", limit: 1, default: 0, null: false
     t.bigint "departure_id", null: false
     t.bigint "destination_id", null: false
     t.bigint "incoterm_id", null: false
+    t.bigint "quoter_id", null: false
     t.decimal "total_gross_weight", precision: 5, scale: 2, default: "0.0", null: false
     t.decimal "length", precision: 5, scale: 2, default: "0.0", null: false
     t.decimal "width", precision: 5, scale: 2, default: "0.0", null: false
@@ -56,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.index ["departure_id"], name: "index_quotes_on_departure_id"
     t.index ["destination_id"], name: "index_quotes_on_destination_id"
     t.index ["incoterm_id"], name: "index_quotes_on_incoterm_id"
+    t.index ["quoter_id"], name: "index_quotes_on_quoter_id"
   end
 
   create_table "shipping_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -112,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "quotes", "customers", column: "quoter_id"
   add_foreign_key "quotes", "locations", column: "departure_id"
   add_foreign_key "quotes", "locations", column: "destination_id"
   add_foreign_key "shipping_details", "customers", column: "shipper_id"
