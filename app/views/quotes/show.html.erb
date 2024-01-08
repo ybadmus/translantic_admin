@@ -1,15 +1,11 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @quote %>
-
-    <%= link_to "Edit this quote", edit_quote_path(@quote), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this quote", quote_path(@quote), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
+      <%= render "show", quote: @quote %>
     </div>
-    <%= link_to "Back to quotes", quotes_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+    <%= link_to "Edit quote", edit_quote_path(@quote), class: "rounded-lg font-medium w-full sm:w-auto px-5 py-2 my-3 text-center text-white bg-green-700 inline-block font-medium" %>
+
+    <%= link_to "Back to quotes", quotes_path, class: "rounded-lg font-medium w-full sm:w-auto px-5 py-2 my-3 text-center bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

@@ -1,7 +1,23 @@
-<div id="<%= dom_id quote %>">
-  <% if action_name != "show" %>
-    <%= link_to "Show this quote", quote, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this quote", edit_quote_path(quote), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr id="<%= "#{dom_id(quote)}_row" %>">
+
+  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+  <%= quote.total_gross_weight %>
+  </th>
+  <td class="px-6 py-4">
+      <%= quote.frieght_type.capitalize %>
+  </td>
+  <td class="px-6 py-4">
+      <%= quote.departure.city %>
+  </td>
+  <td class="px-6 py-4">
+      <%= quote.destination.city %>
+  </td>
+  <td class="px-6 py-4">
+      <%= quote.status.capitalize %>
+  </td>
+  <td class="px-6 py-4">
+    <%= link_to "Show", quote_path(quote), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+    <%= link_to "Destroy", quote, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "font-medium text-red-600 dark:text-red-500 hover:underline" %>
+  </td>
+
+</tr>
