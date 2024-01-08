@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
 
   # GET /locations or /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.order(created_at: :desc).all
   end
 
   # GET /locations/1 or /locations/1.json
@@ -38,7 +38,7 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to locations_url(@location), notice: "Location was successfully updated." }
+        format.html { redirect_to location_url(@location), notice: "Location was successfully updated." }
         format.json { render :show, status: :ok, location: @location }
       else
         format.html { render :edit, status: :unprocessable_entity }
