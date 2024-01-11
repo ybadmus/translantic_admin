@@ -14,5 +14,7 @@
 class Customer < ApplicationRecord
   include DestroyRecord
 
+  self.inheritance_column = nil
+
   validates :name, :email, presence: true
 end
