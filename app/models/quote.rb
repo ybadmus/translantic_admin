@@ -42,7 +42,7 @@ class Quote < ApplicationRecord
   belongs_to :departure, class_name: 'Location', optional: false
   belongs_to :destination, class_name: 'Location', optional: false
   belongs_to :incoterm
-  belongs_to :quoter, class_name: 'Customer', optional: false
+  belongs_to :quoter, optional: false, autosave: false
   accepts_nested_attributes_for :quoter
 
   validates :frieght_type, :total_gross_weight, :height, :width, :length, :message, presence: true
