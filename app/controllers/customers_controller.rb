@@ -25,7 +25,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+        format.html { redirect_to new_customer_url, notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+        format.html { redirect_to customers_url, notice: "Customer was successfully updated." }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,6 +52,7 @@ class CustomersController < ApplicationController
     @customer.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@customer)}_row") }
       format.html { redirect_to customers_url, notice: "Customer was successfully destroyed." }
       format.json { head :no_content }
     end
@@ -65,6 +66,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.fetch(:customer, {})
+      params.require(:customer).permit(:name, :type, :email, :phone)
     end
 end

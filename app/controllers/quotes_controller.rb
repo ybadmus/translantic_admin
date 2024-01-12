@@ -25,7 +25,6 @@ class QuotesController < ApplicationController
   # POST /quotes or /quotes.json
   def create
     @quote = Quote.new(quote_params_hash)
-    binding.break
     @quote.departure_id = @departure_id
     @quote.destination_id = @destination_id
 
@@ -84,7 +83,7 @@ class QuotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quote_params
-      params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, :destination_city, :departure_city,  quoter_attributes: %i[id name email phone type])
+      params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, :destination_city, :departure_city,  quoter_attributes: %i[name email phone])
     end
 
     def quote_params_hash
