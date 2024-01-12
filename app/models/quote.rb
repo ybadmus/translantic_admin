@@ -37,7 +37,7 @@ class Quote < ApplicationRecord
   attr_accessor :departure_city, :destination_city
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
-  enum status: { submitted: 1, reviewed: 2, responded: 3 }
+  enum status: { submitted: 1, reviewed: 2, contacted: 3 }
 
   belongs_to :departure, class_name: 'Location', optional: false
   belongs_to :destination, class_name: 'Location', optional: false

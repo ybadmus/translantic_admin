@@ -26,6 +26,6 @@ class ShippingInformation < ApplicationRecord
 
   validates :receiver_id, :address_line1, :location_id, presence: true
 
-  belongs_to :location
+  belongs_to :destination, class_name: 'Location', optional: false
   belongs_to :receiver, class_name: 'Customer', optional: false
 end

@@ -39,6 +39,7 @@ class ShippingDetail < ApplicationRecord
   include DestroyRecord
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
+  enum status: { submitted: 1, picked_up: 2, no_pick_up: 3, in_transit: 4, delivered: 5 }
 
   belongs_to :shipper, class_name: 'Customer', optional: false
   belongs_to :current_location, class_name: 'Location', optional: false
