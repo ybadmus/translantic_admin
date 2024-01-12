@@ -1,7 +1,20 @@
-<div id="<%= dom_id customer %>">
-  <% if action_name != "show" %>
-    <%= link_to "Show this customer", customer, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this customer", edit_customer_path(customer), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr id="<%= "#{dom_id(customer)}_row" %>">
+
+  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+      <%= customer.name %>
+  </th>
+  <td class="px-6 py-4">
+      <%= customer.type %>
+  </td>
+  <td class="px-6 py-4">
+      <%= customer.phone %>
+  </td>
+  <td class="px-6 py-4">
+      <%= customer.email %>
+  </td>
+  <td class="px-6 py-4">
+    <%= link_to "Show", customer_path(customer), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+    <%= link_to "Destroy", customer, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "font-medium text-red-600 dark:text-red-500 hover:underline" %>
+  </td>
+
+</tr>
