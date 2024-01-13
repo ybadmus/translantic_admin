@@ -1,11 +1,12 @@
 class CreateShippingDetails < ActiveRecord::Migration[7.0]
   def change
     create_table :shipping_details do |t|
-      t.integer(:frieght_type, default: 1, null: false, limit: 1)
+      t.integer(:frieght_type, default: 0, null: false, limit: 1)
       t.decimal(:length, null: false, precision: 5, scale: 2, default: 0.0)
       t.decimal(:height, null: false, precision: 5, scale: 2, default: 0.0)
       t.decimal(:width, null: false, precision: 5, scale: 2, default: 0.0)
       t.integer(:status, null: false, limit: 1, default: 0)
+      t.string(:tracking_number, limit: 14, default: '0000-0000-0000')
       t.text(:description, null: false)
       t.boolean(:dutiable, default: false)
       t.decimal(:weight, null: false, precision: 5, scale: 2, default: 0.0)

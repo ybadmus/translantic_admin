@@ -62,10 +62,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
   end
 
   create_table "shipping_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "frieght_type", limit: 1, default: 1, null: false
+    t.integer "frieght_type", limit: 1, default: 0, null: false
     t.decimal "length", precision: 5, scale: 2, default: "0.0", null: false
     t.decimal "height", precision: 5, scale: 2, default: "0.0", null: false
     t.decimal "width", precision: 5, scale: 2, default: "0.0", null: false
+    t.integer "status", limit: 1, default: 0, null: false
+    t.string "tracking_number", limit: 14, default: "0000-0000-0000"
     t.text "description", null: false
     t.boolean "dutiable", default: false
     t.decimal "weight", precision: 5, scale: 2, default: "0.0", null: false
@@ -91,11 +93,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
     t.string "company_name"
     t.string "address_line1", null: false
     t.string "address_line2"
-    t.bigint "location_id", null: false
+    t.bigint "destination_id", null: false
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_shipping_informations_on_location_id"
+    t.index ["destination_id"], name: "index_shipping_informations_on_destination_id"
     t.index ["receiver_id"], name: "index_shipping_informations_on_receiver_id"
   end
 
@@ -122,4 +124,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_142953) do
   add_foreign_key "shipping_details", "locations", column: "current_location_id"
   add_foreign_key "shipping_details", "locations", column: "departure_id"
   add_foreign_key "shipping_informations", "customers", column: "receiver_id"
+  add_foreign_key "shipping_informations", "locations", column: "destination_id"
 end
