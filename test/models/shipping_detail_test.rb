@@ -6,11 +6,13 @@
 #  declared_value          :decimal(9, 2)    default(0.0), not null
 #  description             :text(65535)      not null
 #  dutiable                :boolean          default(FALSE)
-#  frieght_type            :integer          default("air"), not null
+#  frieght_type            :integer          default(NULL), not null
 #  height                  :decimal(5, 2)    default(0.0), not null
 #  is_deleted              :boolean          default(FALSE), not null
 #  length                  :decimal(5, 2)    default(0.0), not null
 #  quantity                :integer          default(0)
+#  status                  :integer          default(NULL), not null
+#  tracking_number         :string(14)       default("0000-0000-0000")
 #  weight                  :decimal(5, 2)    default(0.0), not null
 #  width                   :decimal(5, 2)    default(0.0), not null
 #  created_at              :datetime         not null
