@@ -12,4 +12,5 @@
 #  updated_at :datetime         not null
 #
 class Shipper < Customer
+  has_many :shipping_details, dependent: :nullify
 end

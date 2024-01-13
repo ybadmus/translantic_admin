@@ -37,12 +37,12 @@ class Quote < ApplicationRecord
   attr_accessor :departure_city, :destination_city
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
-  enum status: { submitted: 1, reviewed: 2, contacted: 3 }
+  enum status: { submitted: 1, reviewed: 2, completed: 3 }
 
   belongs_to :departure, class_name: 'Location', optional: false
   belongs_to :destination, class_name: 'Location', optional: false
   belongs_to :incoterm
-  belongs_to :quoter, optional: false, autosave: false
+  belongs_to :quoter, optional: false
   accepts_nested_attributes_for :quoter
 
   validates :frieght_type, :total_gross_weight, :height, :width, :length, :message, presence: true

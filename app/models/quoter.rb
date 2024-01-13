@@ -12,4 +12,5 @@
 #  updated_at :datetime         not null
 #
 class Quoter < Customer
+  has_many :quotes, dependent: :nullify
 end

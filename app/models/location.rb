@@ -18,6 +18,9 @@
 class Location < ApplicationRecord
   include DestroyRecord
 
+  has_many :destinations, class_name: 'ShippingInformation', foreign_key: 'destination_id', dependent: :nullify
+  has_many :departures, class_name: 'ShippingDetail', foreign_key: 'departure_id', dependent: :nullify
+
   validates :city, :country, length: { minimum: 3 }, allow_blank: true
   validates :city, uniqueness: true
   validates :city, presence: true
