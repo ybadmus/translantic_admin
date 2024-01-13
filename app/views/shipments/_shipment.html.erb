@@ -1,7 +1,21 @@
-<div id="<%= dom_id shipment %>">
-  <% if action_name != "show" %>
-    <%= link_to "Show this shipment", shipment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this shipment", edit_shipment_path(shipment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr id="<%= "#{dom_id(shipment)}_row" %>">
+
+  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+      <%= shipment.tracking_number %>
+  </th>
+  <td class="px-6 py-4">
+      <%= shipment.current_location.city %>
+  </td>
+  <td class="px-6 py-4">
+      <%= shipment.frieght_type.capitalize %>
+  </td>
+  <td class="px-6 py-4">
+      <%= shipment.status.gsub("_", " ") .capitalize %>
+  </td>
+
+  <td class="px-6 py-4">
+    <%= link_to "Show", shipment_path(shipment), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+    <%= link_to "Destroy", shipment_path(shipment), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "font-medium text-red-600 dark:text-red-500 hover:underline" %>
+  </td>
+
+</tr>
