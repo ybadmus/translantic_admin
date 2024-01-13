@@ -3,7 +3,7 @@ class ShipmentsController < ApplicationController
 
   # GET /shipments or /shipments.json
   def index
-    @shipments = Shipment.all
+    @shipments = ShippingDetail.all
   end
 
   # GET /shipments/1 or /shipments/1.json
@@ -12,7 +12,7 @@ class ShipmentsController < ApplicationController
 
   # GET /shipments/new
   def new
-    @shipment = Shipment.new
+    @shipment = ShippingDetail.new
   end
 
   # GET /shipments/1/edit
@@ -21,7 +21,7 @@ class ShipmentsController < ApplicationController
 
   # POST /shipments or /shipments.json
   def create
-    @shipment = Shipment.new(shipment_params)
+    @shipment = ShippingDetail.new(shipment_params)
 
     respond_to do |format|
       if @shipment.save
@@ -52,6 +52,7 @@ class ShipmentsController < ApplicationController
     @shipment.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@shipment)}_row") }
       format.html { redirect_to shipments_url, notice: "Shipment was successfully destroyed." }
       format.json { head :no_content }
     end
@@ -60,7 +61,7 @@ class ShipmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shipment
-      @shipment = Shipment.find(params[:id])
+      @shipment = ShippingDetail.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
