@@ -44,12 +44,18 @@ class ShippingDetail < ApplicationRecord
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
   enum status: { submitted: 1, picked_up: 2, no_pick_up: 3, in_transit: 4, delivered: 5, returned: 6 }
+  enum dutiable: { yes: 1, no: 2 }
 
   belongs_to :shipper, optional: false
+  accepts_nested_attributes_for :shipper
   belongs_to :current_location, class_name: 'Location', optional: false
+  accepts_nested_attributes_for :current_location
   belongs_to :incoterm, optional: false
   belongs_to :departure, class_name: 'Location', optional: false
+  accepts_nested_attributes_for :departure
   belongs_to :shipping_information, optional: false
+  accepts_nested_attributes_for :shipping_information
+
 
   validates :length, :height, :width, :description, :weight, :quantity, :declared_value, presence: true
 

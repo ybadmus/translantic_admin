@@ -27,6 +27,7 @@ class ShippingInformation < ApplicationRecord
 
   belongs_to :destination, class_name: 'Location', optional: false
   belongs_to :receiver, optional: false
+  accepts_nested_attributes_for :receiver
   has_one :shipping_detail, dependent: :destroy
 
   validates :address_line1, :destination_id, presence: true
