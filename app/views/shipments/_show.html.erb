@@ -6,7 +6,7 @@
                 Name
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipper&.name.presence || "N/A"  %>
+                <%= shipment.shipper.name.presence || "N/A"  %>
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -14,7 +14,7 @@
                 Email
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipper&.email.presence || "N/A" %>
+                <%= shipment.shipper.email.presence || "N/A" %>
             </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -22,7 +22,7 @@
                 Phone
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipper&.phone.presence || "N/A" %>
+                <%= shipment.shipper.phone.presence || "N/A" %>
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -39,7 +39,7 @@
                 Name
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.receiver&.name %>
+                <%= shipment.receiver.name %>
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -47,7 +47,7 @@
                 Email
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.receiver&.email %>
+                <%= shipment.receiver.email %>
             </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -55,7 +55,7 @@
                 Phone
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.receiver&.phone %>
+                <%= shipment.receiver.phone %>
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -63,7 +63,7 @@
                 Company name
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipping_information&.company_name %>
+                <%= shipment.shipping_information.company_name.presence || "N/A" %>
             </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -71,7 +71,7 @@
                 Address line(1)
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipping_information&.address_line1 %>
+                <%= shipment.shipping_information.address_line1 %>
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -79,7 +79,7 @@
                 Address line(2)
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipping_information&.address_line2.presence || "N/A" %>
+                <%= shipment.shipping_information.address_line2.presence || "N/A" %>
             </dd>
         </div>
         <p class="text-xs font-medium mb-3 mt-2 px-3">Shipment Details</p>
@@ -144,7 +144,7 @@
                 Status
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.status.gsub("_", " ") .capitalize %>
+                <%= shipment.status&.gsub("_", " ")&.capitalize %>
             </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -160,7 +160,7 @@
                 Departure
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.departure.city %>, <%= shipment.departure&.country %>
+                <%= shipment.departure.city %>, <%= shipment.departure.country %>
             </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -168,7 +168,7 @@
                 Destination
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.destination&.city %>, <%= shipment.destination&.country %>
+                <%= shipment.destination.city %>, <%= shipment.destination.country %>
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

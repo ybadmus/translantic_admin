@@ -10,7 +10,7 @@
       <%= shipment.frieght_type.capitalize %>
   </td>
   <td class="px-6 py-4">
-      <%= shipment.status.gsub("_", " ") .capitalize %>
+      <%= shipment.status&.gsub("_", " ")&.capitalize %>
   </td>
 
   <td class="px-6 py-4">
