@@ -34,11 +34,11 @@ Quoter.create({ name: 'Quoter 5', email: "#{Faker::Name.first_name.downcase}.#{F
 
 Quoter.create({ name: 'Quoter 6', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name, receiver_id: Receiver.first.id, destination_id: Location.second.id })
+ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name })
 
-ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name, receiver_id: Receiver.second.id, destination_id: Location.second.id })
+ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name })
 
-ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name, receiver_id: Receiver.last.id, destination_id: Location.third.id  })
+ShippingInformation.create({ address_line1: Faker::Address.full_address, address_line2: Faker::Address.full_address, company_name: Faker::Company.name })
 
 Quote.create({ frieght_type: :air, status: :submitted, height: 15.00, width: 35.00, length: 90.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 13.00, departure_id: Location.first.id, destination_id: Location.last.id, incoterm_id: Incoterm.first.id, quoter_id: Quoter.first.id })
 
@@ -52,8 +52,8 @@ Quote.create({ frieght_type: :land, status: :completed, height: 60.00, width: 31
 
 Quote.create({ frieght_type: :land, status: :reviewed, height: 100.00, width: 200.00, length: 90.00, message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 58.00, departure_id: Location.find(8).id, destination_id: Location.find(10).id, incoterm_id: Incoterm.last.id, quoter_id: Quoter.third.id })
 
-ShippingDetail.create({ declared_value: 15000.00, description: Faker::Lorem.sentence(word_count: 100), dutiable: true, frieght_type: :sea, height: 15.00, width: 35.00, length: 90.00, quantity: 5, current_location_id: Location.first.id, shipper_id: Shipper.first.id, departure_id: Location.third.id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.first.id, status: :submitted, weight: 20.00 })
+ShippingDetail.create({ declared_value: 15000.00, description: Faker::Lorem.sentence(word_count: 100), dutiable: :yes, frieght_type: :sea, height: 15.00, width: 35.00, length: 90.00, quantity: 5, shipper_id: Shipper.first.id, departure_id: Location.third.id, destination_id: Location.find(14).id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.first.id, status: :submitted, weight: 20.00, location_id: Location.find(10).id, receiver_id: Receiver.first.id })
 
-ShippingDetail.create({ declared_value: 7000.00, description: Faker::Lorem.sentence(word_count: 100), dutiable: false, frieght_type: :air, weight: 200.00, height: 15.00, width: 35.00, length: 90.00, quantity: 5, current_location_id: Location.fourth.id, shipper_id: Shipper.second.id, departure_id: Location.second.id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.second.id, status: :in_transit })
+ShippingDetail.create({ declared_value: 7000.00, description: Faker::Lorem.sentence(word_count: 100), dutiable: :no, frieght_type: :air, weight: 200.00, height: 15.00, width: 35.00, length: 90.00, quantity: 5, shipper_id: Shipper.second.id, departure_id: Location.second.id, destination_id: Location.find(15).id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.second.id, status: :in_transit, location_id: Location.find(11).id, receiver_id: Receiver.second.id })
 
-ShippingDetail.create({ declared_value: 210000.00, description: Faker::Lorem.sentence(word_count: 100), dutiable: true, frieght_type: :rails, height: 15.00, width: 35.00, length: 90.00, quantity: 5, current_location_id: Location.third.id, shipper_id: Shipper.third.id, departure_id: Location.last.id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.third.id, status: :returned, weight: 120.00 })
+ShippingDetail.create({ declared_value: 210000.00, description: Faker::Lorem.sentence(word_count: 100), dutiable: :yes, frieght_type: :rails, height: 15.00, width: 35.00, length: 90.00, quantity: 5, shipper_id: Shipper.third.id, departure_id: Location.first.id, destination_id: Location.last.id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.third.id, status: :returned, weight: 120.00, location_id: Location.find(13).id, receiver_id: Receiver.third.id })
