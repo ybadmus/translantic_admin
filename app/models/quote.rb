@@ -3,12 +3,12 @@
 # Table name: quotes
 #
 #  id                 :bigint           not null, primary key
-#  frieght_type       :integer          default(NULL), not null
+#  frieght_type       :integer          default("air"), not null
 #  height             :decimal(5, 2)    default(0.0), not null
 #  is_deleted         :boolean          default(FALSE), not null
 #  length             :decimal(5, 2)    default(0.0), not null
 #  message            :text(65535)      not null
-#  status             :integer          default(NULL), not null
+#  status             :integer          default("submitted")
 #  total_gross_weight :decimal(5, 2)    default(0.0), not null
 #  width              :decimal(5, 2)    default(0.0), not null
 #  created_at         :datetime         not null
@@ -33,7 +33,6 @@
 #
 class Quote < ApplicationRecord
   include DestroyRecord
-
   attr_accessor :departure_city, :destination_city
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }

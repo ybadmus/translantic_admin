@@ -6,12 +6,12 @@
 #  declared_value          :decimal(9, 2)    default(0.0), not null
 #  description             :text(65535)      not null
 #  dutiable                :boolean          default(NULL)
-#  frieght_type            :integer          default(NULL), not null
+#  frieght_type            :integer          default("air")
 #  height                  :decimal(5, 2)    default(0.0), not null
 #  is_deleted              :boolean          default(FALSE), not null
 #  length                  :decimal(5, 2)    default(0.0), not null
 #  quantity                :integer          default(0)
-#  status                  :integer          default(NULL), not null
+#  status                  :integer          default("submitted")
 #  tracking_number         :string(14)       not null
 #  weight                  :decimal(5, 2)    default(0.0), not null
 #  width                   :decimal(5, 2)    default(0.0), not null
@@ -20,7 +20,7 @@
 #  departure_id            :bigint           not null
 #  destination_id          :bigint           not null
 #  incoterm_id             :bigint           not null
-#  location_id             :bigint           not null
+#  location_id             :bigint
 #  receiver_id             :bigint           not null
 #  shipper_id              :bigint           not null
 #  shipping_information_id :bigint           not null
@@ -44,6 +44,7 @@
 #
 class ShippingDetail < ApplicationRecord
   include DestroyRecord
+  attr_accessor :location_city, :destination_city, :destination_country
 
   before_create -> { self.tracking_number = generate_tracking_number! }
 
@@ -54,20 +55,35 @@ class ShippingDetail < ApplicationRecord
   belongs_to :shipper, optional: false
   accepts_nested_attributes_for :shipper
   belongs_to :location, optional: false
-  accepts_nested_attributes_for :location
   belongs_to :incoterm, optional: false
   belongs_to :departure, class_name: 'Location', optional: false
   accepts_nested_attributes_for :departure
   belongs_to :shipping_information, optional: false
   accepts_nested_attributes_for :shipping_information
   belongs_to :destination, class_name: 'Location', optional: false
-  accepts_nested_attributes_for :destination
   belongs_to :receiver, optional: false
   accepts_nested_attributes_for :receiver
 
   validates :length, :height, :width, :description, :weight, :quantity, :declared_value, presence: true
+  validate :same_departure_destination?
+
+  def location_city
+    location&.city
+  end
+
+  def destination_city
+    destination&.city
+  end
+
+  def destination_country
+    destination&.country
+  end
 
   private
+
+  def same_departure_destination?
+    errors.add(:base, :destination_and_departure_cities_must_different, message: "Departure and destination cities cannot must be different") if departure == destination
+  end
 
   def generate_tracking_number!
     return if tracking_number.present?
