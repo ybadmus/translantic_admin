@@ -25,8 +25,8 @@ class QuotesController < ApplicationController
   # POST /quotes or /quotes.json
   def create
     @quote = Quote.new(quote_params_hash)
-    @quote.departure_id = @departure_id
-    @quote.destination_id = @destination_id
+    @quote.departure_id = Location.find_or_create_by(city: quote_params[:departure_city]).id
+    @quote.destination_id = Location.find_or_create_by(city: quote_params[:destination_city]).id
 
     respond_to do |format|
       if @quote.save
@@ -41,8 +41,8 @@ class QuotesController < ApplicationController
 
   # PATCH/PUT /quotes/1 or /quotes/1.json
   def update
-    @quote.departure_id = @departure_id
-    @quote.destination_id = @destination_id
+    @quote.departure_id = Location.find_or_create_by(city: quote_params[:departure_city]).id
+    @quote.destination_id = Location.find_or_create_by(city: quote_params[:destination_city]).id
 
     respond_to do |format|
       if @quote.update(quote_params)
@@ -76,14 +76,9 @@ class QuotesController < ApplicationController
       @quoter = Quoter.find_by(email: quote_params[:quoter_attributes][:email])
     end
 
-    def set_locations
-      @departure_id = Location.find_or_create_by(city: quote_params[:departure_city]).id
-      @destination_id = Location.find_or_create_by(city: quote_params[:destination_city]).id
-    end
-
     # Only allow a list of trusted parameters through.
     def quote_params
-      params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, :destination_city, :departure_city,  quoter_attributes: %i[name email phone])
+      params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, :destination_city, :departure_city,  quoter_attributes: %i[id name email phone])
     end
 
     def quote_params_hash
