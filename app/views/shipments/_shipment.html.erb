@@ -1,13 +1,19 @@
 <tr id="<%= "#{dom_id(shipment)}_row" %>">
 
   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-      <%= shipment.tracking_number %>
+      <%= "##{shipment.tracking_number}" %>
   </th>
   <td class="px-6 py-4">
-      <%= shipment.location.city %>
+      <%= shipment.frieght_type.capitalize %>
   </td>
   <td class="px-6 py-4">
-      <%= shipment.frieght_type.capitalize %>
+      <%= shipment.departure.city %>
+  </td>
+  <td class="px-6 py-4">
+      <%= shipment.location&.city %>
+  </td>
+  <td class="px-6 py-4">
+      <%= shipment.destination.city %>
   </td>
   <td class="px-6 py-4">
       <%= shipment.status&.gsub("_", " ")&.capitalize %>
