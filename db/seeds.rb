@@ -10,29 +10,29 @@ locations = [{ city: 'Accra', state: 'Greater Accra Region', country: 'Ghana' },
 Incoterm.create!(incoterms)
 Location.create!(locations)
 
-Shipper.create({ name: 'Shipper 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Shipper.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Shipper.create({ name: 'Shipper 2', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Shipper.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Shipper.create({ name: 'Shipper 3', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Shipper.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Receiver.create({ name: 'Receiver 1', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Receiver.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Receiver.create({ name: 'Receiver 2', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Receiver.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Receiver.create({ name: 'Receiver 3', email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Receiver.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name}.#{Faker::Name.last_name}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 1', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Quoter.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 2', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Quoter.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 3', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Quoter.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 4', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Quoter.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 5', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Quoter.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
-Quoter.create({ name: 'Quoter 6', email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
+Quoter.create({ name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "#{Faker::Name.first_name.downcase}.#{Faker::Name.last_name.downcase}@gmail.com", phone: Faker::PhoneNumber.cell_phone_in_e164  })
 
 ShippingInformation.create({ address_line1: Faker::Address.full_address, company_name: Faker::Company.name })
 
