@@ -1,6 +1,6 @@
 class ShipmentsController < ApplicationController
   before_action :set_shipment, only: %i[ show edit update destroy ]
-  before_action :init_references, only: :create
+  before_action :init_dependencies, only: :create
 
   # GET /shipments or /shipments.json
   def index
@@ -80,7 +80,7 @@ class ShipmentsController < ApplicationController
       params.require(:shipment).permit(:frieght_type, :height, :length, :width, :description, :status, :weight, :quantity, :dutiable, :declared_value, :incoterm_id, :tracking_number, :incoterm_id, :location_city, :destination_city, :destination_country, departure_attributes: %i[id city country], shipper_attributes: %i[id name email phone], receiver_attributes: %i[id name email phone], shipping_information_attributes: %i[id company_name address_line1 address_line2])
     end
 
-    def init_references
+    def init_dependencies
       @departure_id = Location.find_or_create_by(city: shipment_params[:departure_attributes][:city]).id
       @shipper_id = Shipper.find_or_create_by(email: shipment_params[:shipper_attributes][:email]).id
       @destination = Location.find_or_create_by(city: shipment_params[:destination_city]).id
