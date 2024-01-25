@@ -4,37 +4,42 @@
 # documentation.
 
 # pulled from repo
-name: "Rubocop"
+name: "Rubocop CI"
 
 on:
   push:
     branches: "**"
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ "development" ]
   schedule:
     - cron: '00 7 * * *'
-
+    
 jobs:
   rubocop:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      checks: write
+
     strategy:
       fail-fast: false
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     # If running on a self-hosted runner, check it meets the requirements
     # listed at https://github.com/ruby/setup-ruby#using-self-hosted-runners
     - name: Set up Ruby
-      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: 3.2.2
 
     # This step is not necessary if you add the gem to your Gemfile
     - name: Install Code Scanning integration
-      run: bundle add code-scanning-rubocop --version 0.3.0 --skip-install
+      run: bundle add code-scanning-rubocop --version 0.6.1 --skip-install
 
     - name: Install dependencies
       run: bundle install
@@ -47,6 +52,15 @@ jobs:
         "
 
     - name: Upload Sarif output
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: rubocop.sarif
+
+    - name: Publish Test report
+      uses: mikepenz/action-junit-report@v3
+      if: success() || failure() #always run even if the previous step fails
+      with:
+        report_paths: '**/junit.xml'
+        detailed_summary: true
+        include_passed: true
+          
