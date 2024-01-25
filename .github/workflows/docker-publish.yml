@@ -28,6 +28,8 @@ jobs:
       permissions: 
         contents: read
         checks: write
+        actions: read
+        security-events: write
         
   build:
     needs: [integration]
