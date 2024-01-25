@@ -7,13 +7,8 @@
 name: "Rubocop CI"
 
 on:
-  push:
-    branches: "**"
-  pull_request:
-    branches: [ "development" ]
-  schedule:
-    - cron: '00 7 * * *'
-    
+  workflow_call:
+  
 jobs:
   rubocop:
     runs-on: ubuntu-latest
