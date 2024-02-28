@@ -8,7 +8,7 @@
 #  is_deleted         :boolean          default(FALSE), not null
 #  length             :decimal(5, 2)    default(0.0), not null
 #  message            :text(65535)      not null
-#  status             :integer          default("submitted")
+#  status             :integer          default("pending")
 #  total_gross_weight :decimal(5, 2)    default(0.0), not null
 #  width              :decimal(5, 2)    default(0.0), not null
 #  created_at         :datetime         not null
@@ -35,8 +35,10 @@ class Quote < ApplicationRecord
   include DestroyRecord
   attr_accessor :departure_city, :destination_city
 
+  audited only: %i[status]
+
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
-  enum status: { submitted: 1, reviewed: 2, completed: 3 }
+  enum status: { pending: 1, processing: 2, approved: 3, rejected: 4, expired: 5, cancelled: 6, booked: 7, in_transit: 8, delivered: 9, problem: 10 }
 
   belongs_to :departure, class_name: 'Location', optional: false
   belongs_to :destination, class_name: 'Location', optional: false
