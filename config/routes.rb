@@ -5,7 +5,9 @@
 
 Rails.application.routes.draw do
   resources :incoterms, only: %i[index]
-  resources :shipments
+  resources :shipments do
+    member { get :itenary }
+  end
   resources :quotes
   resources :locations, except: %i[show]
   resources :customers
