@@ -1,5 +1,5 @@
 class ShipmentsController < ApplicationController
-  before_action :set_shipment, only: %i[ show edit update destroy ]
+  before_action :set_shipment, only: %i[ show edit update destroy itenary ]
   before_action :init_dependencies, only: :create
 
   # GET /shipments or /shipments.json
@@ -9,6 +9,10 @@ class ShipmentsController < ApplicationController
 
   # GET /shipments/1 or /shipments/1.json
   def show
+  end
+
+  def itenary
+    #binding.break
   end
 
   # GET /shipments/new

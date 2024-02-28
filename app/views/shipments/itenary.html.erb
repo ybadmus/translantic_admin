@@ -1,0 +1,74 @@
+<h1 class="font-bold text-2xl">Itenary <%= @shipment.tracking_number %></h1>
+
+<hr class="mt-3 mb-3" />
+
+<%= link_to "Back", shipment_path(@shipment), class: "font-medium w-full sm:w-auto px-5 py-2 mb-3 text-center bg-gray-100 inline-block text-sm font-medium" %>
+
+<div id="itenary" class="xl:w-2/3 mx-auto">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+              <th scope="col" class="px-6 py-3">
+                  Status Date/Time
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Status
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Location
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  <span class="sr-only">Delete</span>
+              </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  15-07-2024 12:01:00
+              </th>
+              <td class="px-6 py-4">
+                  Silver
+              </td>
+              <td class="px-6 py-4">
+                  Laptop
+              </td>
+              <td class="px-6 py-4 text-right">
+                  <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+              </td>
+          </tr>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  15-07-2024 12:01:00
+              </th>
+              <td class="px-6 py-4">
+                  White
+              </td>
+              <td class="px-6 py-4">
+                  Laptop PC
+              </td>
+              <td class="px-6 py-4 text-right">
+                  <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+              </td>
+          </tr>
+          <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  15-07-2024 12:01:00
+              </th>
+              <td class="px-6 py-4">
+                  Black
+              </td>
+              <td class="px-6 py-4">
+                  Accessories
+              </td>
+              <td class="px-6 py-4 text-right">
+                  <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="mt-3 mb-3" />
