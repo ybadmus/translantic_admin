@@ -11,8 +11,9 @@ class ShipmentsController < ApplicationController
   def show
   end
 
+  # GET /shipments/1/itenary or /shipments/1/itenary.json
   def itenary
-    #binding.break
+    @audits = @shipment.audits
   end
 
   # GET /shipments/new
@@ -51,6 +52,10 @@ class ShipmentsController < ApplicationController
     destination.update({ country: shipment_params[:destination_country] }) unless shipment_params[:destination_country].blank?
     @shipment.destination_id = destination.id
 
+    @shipment.assign_attributes(shipment_params)
+    @shipment.location_id_will_change! if @shipment.status_changed?
+    @shipment.status_will_change! if @shipment.location_id_changed?
+
     respond_to do |format|
       if @shipment.update(shipment_params)
         format.html { redirect_to shipment_url(@shipment), notice: "Shipment was successfully updated." }
@@ -84,6 +89,7 @@ class ShipmentsController < ApplicationController
       params.require(:shipment).permit(:frieght_type, :height, :length, :width, :description, :status, :weight, :quantity, :dutiable, :declared_value, :incoterm_id, :tracking_number, :incoterm_id, :location_city, :destination_city, :destination_country, departure_attributes: %i[id city country], shipper_attributes: %i[id name email phone], receiver_attributes: %i[id name email phone], shipping_information_attributes: %i[id company_name address_line1 address_line2])
     end
 
+    # Initialize shipping detials associatied resources
     def init_dependencies
       @departure_id = Location.find_or_create_by(city: shipment_params[:departure_attributes][:city]).id
       @shipper_id = Shipper.find_or_create_by(email: shipment_params[:shipper_attributes][:email]).id
@@ -92,6 +98,7 @@ class ShipmentsController < ApplicationController
       @receiver_id = Receiver.find_or_create_by(email: shipment_params[:receiver_attributes][:email]).id
     end
 
+    # Shipment hash
     def shipment_params_hash
       shipment_params_hash = shipment_params.to_h
       shipment_params_hash[:shipper_id] = @shipper_id

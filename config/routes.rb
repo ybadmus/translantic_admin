@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :shipments do
     member { get :itenary }
   end
+  resources :audits, only: %i[destroy]
   resources :quotes
   resources :locations, except: %i[show]
   resources :customers
