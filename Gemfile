@@ -88,4 +88,12 @@ gem 'mysql2', '~> 0.5.2'
 
 gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 
-gem "hotwire-rails", "~> 0.1.3"
+gem 'hotwire-rails', '~> 0.1.3'
+
+gem 'audited', '~> 5.4', '>= 5.4.3'
+
+gem 'wicked_pdf', '~> 2.8'
+
+gem 'wkhtmltopdf-binary', '~> 0.12.6.6'
+
+gem "sassc-rails"
