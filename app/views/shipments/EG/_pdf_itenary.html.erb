@@ -1,0 +1,44 @@
+<div class="content grid report business-summary">
+  <br /><br /><br />
+  <div class="title">
+    Shipping History
+  </div>
+
+  <table class="content-table">
+    <thead>
+      <tr rowspan="2">
+        <th class="text-center">
+          <div>STATUS DATE/TIME</div>
+        </th>
+        <th class="text-center">
+          <div>STATUS</div>
+        </th>
+        <th class="text-center">
+          <div>LOCATION</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shipment.audits.each do |audit| %>
+        <tr>
+            <td><%= audit.created_at.strftime("%m/%d/%Y %I:%M%p") %></td>
+            <td>
+               <% if audit.action == 'create' %>
+                  <%= ShippingDetail.statuses.key(audit.audited_changes['status']).gsub("_", " ")&.capitalize %>
+              <% else %>
+                  <%= ShippingDetail.statuses.key(audit.audited_changes['status']&.last).gsub("_", " ")&.capitalize %>
+              <% end %>
+            </td>
+            <td>
+                <% if audit.action == 'create' %>
+                    <%= Location.find_by(id: audit.audited_changes['location_id']).city %>
+                <% else %>
+                    <%= Location.find_by(id: audit.audited_changes['location_id'].last.to_i).city %>
+                <% end %>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
