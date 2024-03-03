@@ -4,7 +4,7 @@
 #
 #  id                      :bigint           not null, primary key
 #  declared_value          :decimal(9, 2)    default(0.0), not null
-#  description             :text(65535)      not null
+#  description             :string(500)      not null
 #  dutiable                :boolean          default(NULL)
 #  frieght_type            :integer          default("air")
 #  height                  :decimal(5, 2)    default(0.0), not null

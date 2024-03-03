@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_224405) do
     t.decimal "width", precision: 5, scale: 2, default: "0.0", null: false
     t.integer "status", limit: 1, default: 1
     t.string "tracking_number", limit: 14, null: false
-    t.text "description", null: false
+    t.string "description", limit: 500, null: false
     t.boolean "dutiable", default: false
     t.decimal "weight", precision: 5, scale: 2, default: "0.0", null: false
     t.integer "quantity", default: 0
