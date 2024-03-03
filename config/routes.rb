@@ -6,7 +6,10 @@
 Rails.application.routes.draw do
   resources :incoterms, only: %i[index]
   resources :shipments do
-    member { get :itenary }
+    member do
+       get :itenary
+       get :pdf
+    end
   end
   resources :audits, only: %i[destroy]
   resources :quotes

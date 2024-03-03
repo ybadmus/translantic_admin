@@ -1,5 +1,5 @@
 class ShipmentsController < ApplicationController
-  before_action :set_shipment, only: %i[ show edit update destroy itenary ]
+  before_action :set_shipment, only: %i[ show edit update destroy itenary pdf ]
   before_action :init_dependencies, only: :create
 
   # GET /shipments or /shipments.json
@@ -28,6 +28,11 @@ class ShipmentsController < ApplicationController
 
   # GET /shipments/1/edit
   def edit
+  end
+
+  # GET /shipments/1/pdf
+  def pdf
+    render_pdf
   end
 
   # POST /shipments or /shipments.json
@@ -81,7 +86,7 @@ class ShipmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shipment
-      @shipment = ShippingDetail.find(params[:id])
+      @shipment = ShippingDetail.includes(:audits).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -109,5 +114,19 @@ class ShipmentsController < ApplicationController
       shipment_params_hash[:receiver_id] = @receiver_id
       shipment_params_hash[:receiver_attributes][:id] = @receiver_id
       shipment_params_hash
+    end
+
+    def render_pdf
+      render(
+        template: 'shipments/pdf',
+        pdf: 'invoice',
+        page_size: 'A4',
+        margin: { bottom: 22 },
+        footer: {
+          html: {
+            template: 'pdf_document_footer'
+          }
+        }
+      )
     end
 end
