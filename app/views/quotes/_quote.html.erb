@@ -1,23 +1,21 @@
 <tr id="<%= "#{dom_id(quote)}_row" %>">
-
   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-  <%= quote.total_gross_weight %>
+      <%= quote.departure.city %>
   </th>
   <td class="px-6 py-4">
-      <%= quote.frieght_type.capitalize %>
-  </td>
-  <td class="px-6 py-4">
-      <%= quote.departure.city %>
-  </td>
-  <td class="px-6 py-4">
       <%= quote.destination.city %>
+  </td>
+  <td class="px-6 py-4">
+      <%= quote.total_gross_weight %>
+  </td>
+  <td class="px-6 py-4">
+      <%= quote.frieght_type.capitalize %>
   </td>
   <td class="px-6 py-4">
       <%= quote.status.capitalize %>
   </td>
   <td class="px-6 py-4">
-    <%= link_to "Show", quote_path(quote), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
-    <%= link_to "Destroy", quote, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "font-medium text-red-600 dark:text-red-500 hover:underline" %>
+      <%= link_to "Show", quote_path(quote), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+      <%= link_to "Destroy", quote, data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "font-medium text-red-600 dark:text-red-500 hover:underline" %>
   </td>
-
 </tr>

@@ -1,32 +1,29 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-2xl">Users</h1>
-    <%= link_to "New customer", new_customer_path, class: "text-white rounded-lg py-2 px-4 bg-blue-600 text-white text-sm block font-medium" %>
+    <h1 class="font-bold text-2xl">Clients</h1>
+    <%= link_to "New client", new_customer_path, class: "py-2 px-2 bg-blue-600 text-white text-sm block font-medium" %>
   </div>
 
   <hr class="mt-3 mb-7" />
 
   <div id="customers" class="min-w-full">
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="px-6 py-3">
-                Name
-            </th>
-            <th scope="col" class="px-6 py-3">
-                Type
-            </th>
-            <th scope="col" class="px-6 py-3">
-                Email
-            </th>
-            <th scope="col" class="px-6 py-3">
-                Phone
-            </th>
-            <th scope="col" class="px-6 py-3">
-                Action
-            </th>
-          </tr>
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Phone
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
         </thead>
         <tbody>
             <%= render partial: 'customer', collection: @customers %>

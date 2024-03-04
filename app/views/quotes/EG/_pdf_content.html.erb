@@ -29,12 +29,10 @@
           <div>
             <p class="text-left-grey">Status: </p>
             <p style="padding-left: 15px;"><%= @quote.status.capitalize %></p>
-            <p> </p>
           </div>
           <div>
             <p class="text-left-grey">Departure: </p>
             <p style="padding-left: 15px;"><%= @quote.departure_city %>, <%= @quote.departure.country %></p>
-            <p> </p>
           </div>
           <div>
             <p class="text-left-grey">Destination: </p>
@@ -43,12 +41,10 @@
           <div>
             <p class="text-left-grey">Incoterm: </p>
             <p style="padding-left: 15px;"><%= @quote.incoterm.abbr %></p>
-            <p> </p>
           </div>
           <div>
             <p class="text-left-grey">Dimensions (Ft): </p>
-            <p style="padding-left: 15px;"><%= @quote.length %>, <%= @quote.width %>, <%= @quote.height %> (L, W, H)</p>
-            <p> </p>
+            <p style="padding-left: 15px;">length: <%= @quote.length %> | width: <%= @quote.width %> | height: <%= @quote.height %></p>
           </div>
           <div>
             <p class="text-left-grey">Quoter: </p>

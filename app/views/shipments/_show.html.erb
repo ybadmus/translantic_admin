@@ -1,6 +1,38 @@
-<div class="border-gray-200">
-    <dl>
-        <p class="text-xs font-medium mb-3 mt-2 px-3">Shipper</p>
+<div class="w-full max-w-xl flex-none">
+    <dl class="shadow overflow-hidden">
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+                Status
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= shipment.status&.gsub("_", " ")&.capitalize %>
+            </dd>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+                Location
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= shipment.location&.city %>, <%= shipment.location&.country %>
+            </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+                Declared value
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= ActionController::Base.helpers.number_to_currency(shipment.declared_value, precision: 2) %> USD
+            </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+                Date submitted
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= shipment.created_at.strftime("%m/%d/%Y, %T") %>
+            </dd>
+        </div>
+        <p class="text-xs font-semibold mb-3 mt-2 px-3">Shipper</p>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
                 Name
@@ -25,15 +57,7 @@
                 <%= shipment.shipper.phone.presence || "N/A" %>
             </dd>
         </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Date submitted
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.created_at.strftime("%m/%d/%Y, %T") %>
-            </dd>
-        </div>
-        <p class="text-xs font-semibold mb-3 mt-2 px-5">Receiver</p>
+        <p class="text-xs font-semibold mb-3 mt-2 px-3">Receiver</p>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
                 Name
@@ -58,45 +82,54 @@
                 <%= shipment.receiver.phone %>
             </dd>
         </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Company name
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipping_information.company_name.presence || "N/A" %>
-            </dd>
-        </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
-                Address line(1)
+                Address line
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 <%= shipment.shipping_information.address_line1 %>
             </dd>
         </div>
+    </dl>
+</div>
+
+
+<div class="w-full max-w-xl flex-none">
+    <dl class="shadow overflow-hidden">
+        <div class="bg-gray-50 px-4 py-3 flex justify-center">
+            <%= link_to "History", itenary_shipment_path(@shipment), class: "rounded font-medium px-5 py-2 mx-1 w-full text-center text-dark bg-yellow-500 inline-block text-sm font-medium" %>
+            <%= link_to "PDF", pdf_shipment_path(@shipment), class: "rounded font-medium px-5 py-2 mx-1 w-full text-center text-white bg-gray-500 inline-block text-sm font-medium" %>
+        </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
-                Address line(2)
+                Departure
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.shipping_information.address_line2.presence || "N/A" %>
+                <%= shipment.departure.city %>, <%= shipment.departure.country %>
             </dd>
         </div>
-        <p class="text-xs font-medium mb-3 mt-2 px-3">Shipment Details</p>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
-                Dutiable (non documents)
+                Destination
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= shipment.destination.city %>, <%= shipment.destination.country %>
+            </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+                Frieght
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= shipment.frieght_type.capitalize %>
+            </dd>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+                Dutiable
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 <%= shipment.dutiable? ? "Yes" : "No" %>
-            </dd>
-        </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Declared value
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.declared_value %> USD
             </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -121,54 +154,6 @@
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 <%= shipment.quantity %>
-            </dd>
-        </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Frieght
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.frieght_type.capitalize %>
-            </dd>
-        </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Tracking No.
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= "##{shipment.tracking_number}" %>
-            </dd>
-        </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Status
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.status&.gsub("_", " ")&.capitalize %>
-            </dd>
-        </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Location
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.location&.city %>, <%= shipment.location&.country %>
-            </dd>
-        </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Departure
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.departure.city %>, <%= shipment.departure.country %>
-            </dd>
-        </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-                Destination
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%= shipment.destination.city %>, <%= shipment.destination.country %>
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
