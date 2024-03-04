@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Invoice</title>
+    <%= wicked_pdf_stylesheet_link_tag "default_reports" %>
+  </head>
+
+  <body onload='number_pages()'>
+    <%= render "quotes/EG/pdf_content" %>
+  </body>
+
+</html>
