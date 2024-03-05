@@ -29,10 +29,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :shipments do
         collection do
-          get :pdf
+          get :verify
+          get :send_pdf_email
         end
       end
+      resources :quotes, only: %i[create]
       resources :enquiries, only: %i[create]
+      resources :incoterms, only: %i[index]
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: shipping_details
@@ -52,9 +54,9 @@ class ShippingDetail < ApplicationRecord
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
   enum status: { submitted: 1, awaiting_customs_bond_letter: 2, segregated_storage: 3, awaiting_customs_clearance_document: 4,
-  complete: 5, arrived_at_our_facility: 6, pending_payment: 7, origin_scan: 8, cleared: 9, delivered: 10, delayed_due_to_payment_not_received: 11,
-  delayed_due_to_weather: 12, quickpak_express_shipping_origin: 13, awaiting_clearance_by_customs: 14, at_quickpack_express_shipping_source: 15,
-  processing_for_delivery: 16, not_cleared: 17, in_transit: 18, awaiting_shipment_payment: 19, departure_scan: 20, arrival_scan: 21 }
+                 complete: 5, arrived_at_our_facility: 6, pending_payment: 7, origin_scan: 8, cleared: 9, delivered: 10, delayed_due_to_payment_not_received: 11,
+                 delayed_due_to_weather: 12, quickpak_express_shipping_origin: 13, awaiting_clearance_by_customs: 14, at_quickpack_express_shipping_source: 15,
+                 processing_for_delivery: 16, not_cleared: 17, in_transit: 18, awaiting_shipment_payment: 19, departure_scan: 20, arrival_scan: 21 }
   enum dutiable: { yes: 1, no: 2 }
 
   belongs_to :shipper, optional: false
@@ -87,7 +89,10 @@ class ShippingDetail < ApplicationRecord
   private
 
   def same_departure_destination?
-    errors.add(:base, :destination_and_departure_cities_must_different, message: "Departure and destination cities cannot must be different") if departure == destination
+    return unless departure == destination
+
+    errors.add(:base, :destination_and_departure_cities_must_different,
+               message: 'Departure and destination cities cannot must be different')
   end
 
   def generate_tracking_number!
