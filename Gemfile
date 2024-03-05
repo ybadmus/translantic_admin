@@ -97,3 +97,5 @@ gem 'wicked_pdf', '~> 2.8'
 gem 'wkhtmltopdf-binary', '~> 0.12.6.6'
 
 gem "sassc-rails"
+
+gem 'active_model_serializers', '~> 0.10.2'
