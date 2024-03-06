@@ -12,13 +12,14 @@ module Api
         render_success('success', shipment, ShipmentSerializer)
       end
 
-
       # GET : /api/v1/shipments/verify
       def verify
         render_success('success', @shipment, ShipmentSerializer)
       end
 
       def send_pdf_email
+        missing_params!(:email, :order_number)
+
       end
 
       private
@@ -32,7 +33,9 @@ module Api
       end
 
       def authorize_verify!
-        render_unauthorized('The email you submitted does not match the emails associated with the order') unless same_email_associate?
+        return if same_email_associate?
+
+        render_unauthorized('The email you submitted does not match the emails associated with the order')
       end
     end
   end

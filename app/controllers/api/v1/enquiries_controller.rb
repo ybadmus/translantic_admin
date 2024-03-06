@@ -7,8 +7,7 @@ module Api
       def create
         enquiry = Enquiry.new(enquiry_params)
         if enquiry.save
-          # Send email to admin about new enquiry received
-          # EnquiryMailer
+          EnquiryMailer.with(enquiry:).admin_email.deliver_later
           render_success('success', enquiry, EnquirySerializer)
         else
           render_error(enquiry.errors.full_messages)
