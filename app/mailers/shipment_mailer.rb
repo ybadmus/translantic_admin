@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class ShipmentMailer < ApplicationMailer
-  default to: [@shipment.receiver.email, @shipment.shipper.email], from: 'collection@translantics.com'
+  default from: 'collection@translantics.com'
 
   def new_shipment
     @shipment = params[:shipment]
     attachments["Order_#{@shipment.tracking_number}.pdf"] = shipment_pdf
-    mail(subject: 'Your order has been received!')
+    mail(to: [@shipment.receiver.email, @shipment.shipper.email], subject: 'Your order has been received!')
   end
 
   private

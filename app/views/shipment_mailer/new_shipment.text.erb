@@ -12,7 +12,7 @@ Receiver:
 Name: <%= @shipment.receiver.name %>
 Email: <%= @shipment.receiver.email %>
 Phone: <%= @shipment.receiver.phone %>
-Address line: <%= @shipment.address_line1 %>
+Address line: <%= @shipment.shipping_information.address_line1 %>
 
 ===============================================
 
@@ -34,8 +34,3 @@ Message: <%= @shipment.description %>
 We have generated a PDF document for your order.
 The pdf is attached within this email.
 Please do not reply to this email. Should you need further assistance, please send email at admin@mrsool.co or call.
-
-
-  <p>We have generated an issued monthly invoice PDF.<p>
-    <p>The pdf is attached within this email.</p>
-    <p>Please do not reply to this email. Should you need further assistance, please send email at collection@mrsool.co or call at +966 594704503<p>
