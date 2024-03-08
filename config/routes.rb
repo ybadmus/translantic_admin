@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         collection do
           get :verify
           get :send_pdf_email
+          get :preview_pdf
         end
       end
       resources :quotes, only: %i[create]
