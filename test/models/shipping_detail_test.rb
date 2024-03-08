@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: shipping_details
@@ -42,7 +44,7 @@
 #  fk_rails_...  (receiver_id => customers.id)
 #  fk_rails_...  (shipper_id => customers.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class ShippingDetailTest < ActiveSupport::TestCase
   # test "the truth" do

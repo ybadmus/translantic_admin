@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class ShipmentSerializer < ActiveModel::Serializer
-  attributes :id, :length, :width, :height, :declared_value, :description, :dutiable, :frieght_type, :status, :tracking_number, :shipper, :receiver, :incoterm, :destination, :departure, :location, :shipping_information, :primary_address
+  attributes :id, :length, :width, :height, :declared_value, :description, :dutiable, :frieght_type, :status,
+             :tracking_number, :shipper, :receiver, :incoterm, :destination, :departure, :location, :shipping_information, :primary_address
 
   def incoterm
     object.incoterm.as_json

@@ -19,7 +19,6 @@ module Api
 
       def send_pdf_email
         missing_params!(:email, :order_number)
-
       end
 
       private

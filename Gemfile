@@ -30,7 +30,7 @@ gem 'tailwindcss-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem 'redis', '~> 4.0'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -96,6 +96,6 @@ gem 'wicked_pdf', '~> 2.8'
 
 gem 'wkhtmltopdf-binary', '~> 0.12.6.6'
 
-gem "sassc-rails"
+gem 'sassc-rails'
 
 gem 'active_model_serializers', '~> 0.10.2'

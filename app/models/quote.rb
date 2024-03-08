@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: quotes
@@ -38,7 +40,8 @@ class Quote < ApplicationRecord
   audited only: %i[status]
 
   enum frieght_type: { air: 1, land: 2, sea: 3, rails: 4 }
-  enum status: { pending: 1, processing: 2, approved: 3, rejected: 4, expired: 5, cancelled: 6, booked: 7, in_transit: 8, delivered: 9, problem: 10 }
+  enum status: { pending: 1, processing: 2, approved: 3, rejected: 4, expired: 5, cancelled: 6, booked: 7,
+                 in_transit: 8, delivered: 9, problem: 10 }
 
   belongs_to :departure, class_name: 'Location', optional: false
   belongs_to :destination, class_name: 'Location', optional: false

@@ -14,8 +14,7 @@ module Api
         quote.destination = Location.find_or_create_by(city: quote_params[:destination])
 
         if quote.save
-          # Send email to admin about new quote received
-          # QuoteMailer
+          QuoteMailer.with(quote:).new_quote.deliver_later
           render_success('success', quote, QuoteSerializer)
         else
           render_error(quote.errors.full_messages)

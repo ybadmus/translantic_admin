@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: quotes
@@ -31,7 +33,7 @@
 #  fk_rails_...  (destination_id => locations.id)
 #  fk_rails_...  (quoter_id => customers.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class QuoteTest < ActiveSupport::TestCase
   # test "the truth" do

@@ -5,7 +5,7 @@ module ExceptionHandler
   included do
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     rescue_from ActionController::ParameterMissing, with: :missing_strong_params!
-    #rescue_from BadRequestError, with: :render_bad_request
+    # rescue_from BadRequestError, with: :render_bad_request
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   end
 

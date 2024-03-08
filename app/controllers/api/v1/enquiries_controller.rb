@@ -18,7 +18,6 @@ module Api
 
       def enquiry_params
         params.require(:enquiry).permit(:name, :email, :subject, :message)
-
       end
     end
   end
