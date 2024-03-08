@@ -1,0 +1,21 @@
+<div class="content grid">
+  <div class="text">
+    <p><b>Quoter:</b></p><br />
+    <p><b>Name:</b> <%= @quote.quoter.name %></p><br />
+    <p><b>Email:</b> <%= @quote.quoter.email %></p><br />
+    <p><b>Phone:</b> <%= @quote.quoter.phone %></p><br /><br />
+
+    <p><b>Quote:</b></p><br />
+    <p><b>Frieght type:</b> <%= @quote.frieght_type.capitalize %></p><br />
+    <p><b>Status:</b> <%= @quote.status.capitalize.gsub("_", " ") %></p><br />
+    <p><b>Departure:</b> <%= @quote.departure.city.capitalize %></p><br />
+    <p><b>Destination:</b> <%= @quote.destination.city.capitalize %></p><br />
+    <p><b>Incoterm:</b> <%= @quote.incoterm.abbr %></p><br />
+    <p><b>Length:</b> <%= @quote.length %> ft</p><br />
+    <p><b>Height:</b> <%= @quote.height %> ft</p><br />
+    <p><b>Width:</b> <%= @quote.width %> ft</p><br />
+    <p><b>Message:</b> <%= @quote.message %></p><br /><br />
+
+    <p>Thanks you and have a great day!</p>
+  </div>
+</div>

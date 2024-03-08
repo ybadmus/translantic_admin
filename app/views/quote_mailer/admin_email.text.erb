@@ -1,0 +1,24 @@
+
+<%= @quote.total_gross_weight %> Kg quote
+===============================================
+
+Quoter:
+Name: <%= @quote.quoter.name %>
+Email: <%= @quote.quoter.email %>
+Phone: <%= @quote.quoter.phone %>
+
+===============================================
+
+Frieght type: <%= @quote.frieght_type.capitalize %>
+Status: <%= @quote.status.capitalize.gsub("_", " ") %>
+Departure: <%= @quote.departure.city.capitalize %>
+Destination: <%= @quote.destination.city.capitalize %>
+Incoterm: <%= @quote.incoterm.abbr %>
+Length: <%= @quote.length %> Ft
+Height: <%= @quote.height %> Ft
+Width: <%= @quote.width %> Ft
+Message: <%= @quote.message %>
+
+===============================================
+
+Thanks you and have a great day!
