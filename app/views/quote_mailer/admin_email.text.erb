@@ -1,4 +1,3 @@
-
 <%= @quote.total_gross_weight %> Kg quote
 ===============================================
 
@@ -9,16 +8,17 @@ Phone: <%= @quote.quoter.phone %>
 
 ===============================================
 
+Details:
 Frieght type: <%= @quote.frieght_type.capitalize %>
 Status: <%= @quote.status.capitalize.gsub("_", " ") %>
 Departure: <%= @quote.departure.city.capitalize %>
 Destination: <%= @quote.destination.city.capitalize %>
 Incoterm: <%= @quote.incoterm.abbr %>
-Length: <%= @quote.length %> Ft
-Height: <%= @quote.height %> Ft
-Width: <%= @quote.width %> Ft
+Length: <%= @quote.length %> ft
+Height: <%= @quote.height %> ft
+Width: <%= @quote.width %> ft
 Message: <%= @quote.message %>
 
 ===============================================
 
-Thanks you and have a great day!
+Please do not reply to this email. Should you need further assistance, please send email at admin@mrsool.co or call.

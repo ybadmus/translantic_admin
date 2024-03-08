@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EnquiryMailer < ApplicationMailer
-  default from: 'admin@translantics.com'
+  default from: 'collection@translantics.com'
 
   def admin_email
     @enquiry = params[:enquiry]
