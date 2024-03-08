@@ -1,0 +1,30 @@
+<div class="content grid">
+  <div class="text">
+    <p><b>Shipper:</b></p><br />
+    <p><b>Name:</b> <%= @shipment.shipper.name %></p><br />
+    <p><b>Email:</b> <%= @shipment.shipper.email %></p><br />
+    <p><b>Phone:</b> <%= @shipment.shipper.phone %></p><br /><br />
+
+    <p><b>Receiver:</b></p><br />
+    <p><b>Name:</b> <%= @shipment.receiver.name %></p><br />
+    <p><b>Email:</b> <%= @shipment.receiver.email %></p><br />
+    <p><b>Phone:</b> <%= @shipment.receiver.phone %></p><br /><br />
+
+    <p><b>Details:</b></p><br />
+    <p><b>Declared value:</b> <%= ActionController::Base.helpers.number_to_currency(@shipment.declared_value, precision: 2) %> USD</p><br />
+    <p><b>Frieght type:</b> <%= @shipment.frieght_type.capitalize %></p><br />
+    <p><b>Status:</b> <%= @shipment.status.capitalize.gsub("_", " ") %></p><br />
+    <p><b>Tracking #:</b> <%= @shipment.tracking_number %></p><br />
+    <p><b>Departure:</b> <%= @shipment.departure.city.capitalize %></p><br />
+    <p><b>Destination:</b> <%= @shipment.destination.city.capitalize %></p><br />
+    <p><b>Incoterm:</b> <%= @shipment.incoterm.abbr %></p><br />
+    <p><b>Length:</b> <%= @shipment.length %> ft</p><br />
+    <p><b>Height:</b> <%= @shipment.height %> ft</p><br />
+    <p><b>Width:</b> <%= @shipment.width %> ft</p><br />
+    <p><b>Message:</b> <%= @shipment.message %></p><br /><br />
+
+    <p>We have generated a PDF document for your order.</p>
+    <p>The pdf is attached within this email.</p>
+    <p>Please do not reply to this email. Should you need further assistance, please send email at admin@mrsool.co or call.</p>
+  </div>
+</div>

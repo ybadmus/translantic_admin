@@ -3,7 +3,7 @@
 module Api
   module V1
     class ShipmentsController < ApiController
-      before_action :set_shipment, only: %i[verify send_pdf]
+      before_action :set_shipment, only: %i[verify send_pdf download_pdf]
       before_action :authorize_verify!, only: [:verify]
 
       # GET : /api/v1/shipments
@@ -17,8 +17,14 @@ module Api
         render_success('success', @shipment, ShipmentSerializer)
       end
 
-      def send_pdf_email
+      def send_pdf
         missing_params!(:email, :order_number)
+        ShipmentMailer.with(shipment: @shipment).new_shipment.deliver_now
+        render_success("Order pdf successfully sent to #{params[:email]}")
+      end
+
+      def download_pdf
+        send_data(shipment_pdf, filename: "Order_#{@shipment.tracking_number}.pdf")
       end
 
       private
@@ -35,6 +41,20 @@ module Api
         return if same_email_associate?
 
         render_unauthorized('The email you submitted does not match the emails associated with the order')
+      end
+
+      def shipment_pdf
+        render_to_string(
+          template: 'shipments/pdf',
+          pdf: 'invoice',
+          page_size: 'A4',
+          margin: { bottom: 22 },
+          footer: {
+            html: {
+              template: 'pdf_document_footer'
+            }
+          }
+        )
       end
     end
   end

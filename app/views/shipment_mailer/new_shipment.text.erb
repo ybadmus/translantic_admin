@@ -1,0 +1,41 @@
+<%= @shipment.weight %> Kg shipment
+===============================================
+
+Shipper:
+Name: <%= @shipment.shipper.name %>
+Email: <%= @shipment.shipper.email %>
+Phone: <%= @shipment.shipper.phone %>
+
+===============================================
+
+Receiver:
+Name: <%= @shipment.receiver.name %>
+Email: <%= @shipment.receiver.email %>
+Phone: <%= @shipment.receiver.phone %>
+Address line: <%= @shipment.address_line1 %>
+
+===============================================
+
+Details:
+Declared value: <%= ActionController::Base.helpers.number_to_currency(@shipment.declared_value, precision: 2) %> USD
+Frieght type: <%= @shipment.frieght_type.capitalize %>
+Status: <%= @shipment.status.capitalize.gsub("_", " ") %>
+Tracking #: <%= @shipment.tracking_number %>
+Departure: <%= @shipment.departure.city.capitalize %>
+Destination: <%= @shipment.destination.city.capitalize %>
+Incoterm: <%= @shipment.incoterm.abbr %>
+Length: <%= @shipment.length %> ft
+Height: <%= @shipment.height %> ft
+Width: <%= @shipment.width %> ft
+Message: <%= @shipment.description %>
+
+===============================================
+
+We have generated a PDF document for your order.
+The pdf is attached within this email.
+Please do not reply to this email. Should you need further assistance, please send email at admin@mrsool.co or call.
+
+
+  <p>We have generated an issued monthly invoice PDF.<p>
+    <p>The pdf is attached within this email.</p>
+    <p>Please do not reply to this email. Should you need further assistance, please send email at collection@mrsool.co or call at +966 594704503<p>
