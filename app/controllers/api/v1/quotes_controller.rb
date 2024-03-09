@@ -5,14 +5,8 @@ module Api
     class QuotesController < ApiController
       # POST : /api/v1/{quotes}
       def create
-        dimension = quote_params[:dimension].split(',').map(&:to_i)
-        quote_params.merge(length: dimension[0], width: dimension[1], height: dimension[2])
-        quote = Quote.new(quote_params.except(:dimension, :destination, :departure))
-        quote.quoter = Quoter.find_or_create_by(name: quoter_params[:name], email: quoter_params[:email],
-                                                phone: quoter_params[:phone])
-        quote.departure = Location.find_or_create_by(city: quote_params[:departure])
-        quote.destination = Location.find_or_create_by(city: quote_params[:destination])
-
+        service = ::QuoteCreator.new(quote_params:, quoter_params:)
+        quote = service.perform
         if quote.save
           QuoteMailer.with(quote:).new_quote.deliver_later
           render_success('success', quote, QuoteSerializer)
