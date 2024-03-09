@@ -10,7 +10,8 @@ module Api
 
       # GET : /api/v1/shipments
       def show
-        shipment = ShippingDetail.find_by!(params[:id])
+        shipment = ShippingDetail.includes(:departure, :destination, :incoterm, :location, :receiver, :shipper,
+                                           :shipping_information).find(params[:id])
         render_success('success', shipment, ShipmentSerializer)
       end
 
@@ -41,7 +42,8 @@ module Api
       private
 
       def set_shipment
-        @shipment = ShippingDetail.find_by!(tracking_number: params[:order_number])
+        @shipment = ShippingDetail.includes(:departure, :destination, :incoterm, :location, :receiver, :shipper,
+                                            :shipping_information).find_by!(tracking_number: params[:order_number])
       end
 
       def either_recipient_or_sender?
