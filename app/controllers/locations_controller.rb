@@ -21,15 +21,15 @@ class LocationsController < ApplicationController
 
   # POST /locations or /locations.json
   def create
-    @location = Location.new(location_params)
+    location = Location.new(location_params)
 
     respond_to do |format|
-      if @location.save
+      if location.save
         format.html { redirect_to new_location_url, notice: 'Location was successfully created.' }
-        format.json { render :show, status: :created, location: @location }
+        format.json { render :show, status: :created, location: location }
       else
         format.html { render :new, status: :bad_request }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
+        format.json { render json: location.errors, status: :unprocessable_entity }
       end
     end
   end
