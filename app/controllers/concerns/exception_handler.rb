@@ -9,8 +9,8 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   end
 
-  def record_not_found(exeption)
-    render_not_found("Couldn't find #{exeption.model.titleize} with id #{exeption.id}")
+  def record_not_found
+    render_not_found("Couldn't find Shipment with tracking number #{params[:order_number]}")
   end
 
   def user_not_authorized

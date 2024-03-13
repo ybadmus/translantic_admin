@@ -36,6 +36,8 @@ module Api
       private
 
       def set_shipment
+        return render_bad_request('The tracking number you submitted is invalid, please check and try again') unless valid_tracking_number?
+
         @shipment = ShippingDetail.includes(:departure, :destination, :incoterm, :location, :receiver, :shipper,
                                             :shipping_information).find_by!(tracking_number: params[:order_number])
       end
@@ -48,6 +50,15 @@ module Api
         return if either_recipient_or_sender?
 
         render_unauthorized('The email you submitted does not match the emails associated with the order')
+      end
+
+      def valid_tracking_number?
+        if params[:order_number].count('-').zero? && params[:order_number].length == 12
+          params[:order_number] = params[:order_number].scan(/.{1,4}/).join('-')
+          return true
+        end
+
+        params[:order_number].count('-') == 2 && params[:order_number].length == 14
       end
     end
   end
