@@ -6,7 +6,7 @@ class QuotesController < ApplicationController
 
   # GET /quotes or /quotes.json
   def index
-    @quotes = Quote.order(created_at: :desc).all
+    @quotes = Quote.includes(:departure, :destination, :incoterm, :quoter).order(created_at: :desc).all
   end
 
   # GET /quotes/1 or /quotes/1.json
@@ -75,7 +75,7 @@ class QuotesController < ApplicationController
   private
 
   def set_quote
-    @quote = Quote.find(params[:id])
+    @quote = Quote.includes(:departure, :destination, :incoterm, :quoter).find(params[:id])
   end
 
   def set_quoter

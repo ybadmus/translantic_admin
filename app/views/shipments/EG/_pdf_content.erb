@@ -92,7 +92,7 @@
           </div>
           <div>
             <p class="text-left-grey">Phone: </p>
-            <p style="padding-left: 15px;"><%= @shipment.receiver.phone %></p>
+            <p style="padding-left: 15px;"><%= @shipment.receiver.phone.presence || "N/A" %></p>
           </div>
           <div>
             <p class="text-left-grey">Address line: </p>
@@ -102,11 +102,11 @@
           <p>Shipper</p>
           <div>
             <p class="text-left-grey">Name: </p>
-            <p style="padding-left: 15px;"><%= @shipment.shipper.name.presence || "N/A" %></p>
+            <p style="padding-left: 15px;"><%= @shipment.shipper.name.presence %></p>
           </div>
           <div>
             <p class="text-left-grey">Email: </p>
-            <p style="padding-left: 15px;"><%= @shipment.shipper.email.presence || "N/A" || "N/A" %></p>
+            <p style="padding-left: 15px;"><%= @shipment.shipper.email.presence %></p>
           </div>
           <div>
             <p class="text-left-grey">Phone: </p>

@@ -3,6 +3,7 @@
 class AuditsController < ApplicationController
   before_action :set_audit, only: %i[destroy]
 
+  # DELETE /audits/1 or /audits/1.json
   def destroy
     @audit.destroy
 

@@ -5,13 +5,15 @@ module Api
     class QuotesController < ApiController
       # POST : /api/v1/{quotes}
       def create
-        service = ::QuoteCreator.new(quote_params:, quoter_params:)
-        quote = service.perform
-        if quote.save
-          QuoteMailer.with(quote:).new_quote.deliver_later
-          render_success('success', quote, QuoteSerializer)
+        service = CreateQuoteService.new(quote_params: quote_params, quoter_params: quoter_params)
+        service.perform
+        @quote = service.quote
+
+        if @quote.save
+          QuoteMailer.with(quote: @quote).new_quote.deliver_later
+          render_success('success', @quote, QuoteSerializer)
         else
-          render_error(quote.errors.full_messages)
+          render_error(@quote.errors.full_messages)
         end
       end
 

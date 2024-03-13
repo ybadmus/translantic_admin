@@ -46,7 +46,7 @@
 #
 class ShippingDetail < ApplicationRecord
   include DestroyRecord
-  attr_accessor :location_city, :destination_city, :destination_country
+  # attr_accessor :location_city, :destination_city, :destination_country
 
   audited only: %i[status location_id]
 
@@ -61,35 +61,31 @@ class ShippingDetail < ApplicationRecord
 
   belongs_to :shipper, optional: false
   accepts_nested_attributes_for :shipper
+
   belongs_to :location, optional: false
+  accepts_nested_attributes_for :location
+
   belongs_to :incoterm, optional: false
+
   belongs_to :departure, class_name: 'Location', optional: false
   accepts_nested_attributes_for :departure
+
   belongs_to :shipping_information, optional: false
   accepts_nested_attributes_for :shipping_information
+
   belongs_to :destination, class_name: 'Location', optional: false
+  accepts_nested_attributes_for :destination
+
   belongs_to :receiver, optional: false
   accepts_nested_attributes_for :receiver
 
-  validates :length, :height, :width, :description, :weight, :quantity, :declared_value, presence: true
+  validates :length, :height, :width, :description, :weight, :declared_value, presence: true
   validate :same_departure_destination?
-
-  def location_city
-    location&.city
-  end
-
-  def destination_city
-    destination&.city
-  end
-
-  def destination_country
-    destination&.country
-  end
 
   private
 
   def same_departure_destination?
-    return unless departure == destination
+    return false unless departure == destination
 
     errors.add(:base, :destination_and_departure_cities_must_different,
                message: 'Departure and destination cities cannot must be different')
@@ -100,7 +96,7 @@ class ShippingDetail < ApplicationRecord
 
     loop do
       tracking_number = SecureRandom.random_number(10**12).to_s
-      return tracking_number.scan(/.{1,4}/).join('-') unless ShippingDetail.exists?(tracking_number:)
+      return tracking_number.scan(/.{1,4}/).join('-') unless ShippingDetail.exists?(tracking_number: tracking_number)
     end
   end
 end

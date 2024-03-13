@@ -4,8 +4,8 @@
 module JsonResponders
   def render_error(message, code = 400, data = {}, serializer = nil, serializer_options = {})
     render(json: {
-             code:,
-             message:,
+             code: code,
+             message: message,
              data: serialize(data, serializer, serializer_options)
            }, status: code)
   end
@@ -21,26 +21,15 @@ module JsonResponders
   end
 
   def render_bad_request(message, data = {})
-    render(json: {
-             code: 400,
-             message:,
-             data:
-           }, status: 400)
+    render(json: { code: 400, message: message, data: data }, status: 400)
   end
 
   def render_not_found(message, data = {})
-    render(json: {
-             code: 404,
-             message:,
-             data:
-           }, status: 404)
+    render(json: { code: 404, message: message, data: data }, status: 404)
   end
 
   def render_unauthorized(message)
-    render(json: {
-             code: 401,
-             error: message
-           }, status: :unauthorized)
+    render(json: { code: 401, error: message }, status: :unauthorized)
   end
 
   def render_success(message, data = {}, serializer = nil, serializer_options = {}, extra_info = nil)
@@ -50,13 +39,9 @@ module JsonResponders
   def render_success_with_websocket(message, data = {}, serializer = nil, serializer_options = {}, method = nil,
                                     record = nil)
     serialized_data = serialize(data, serializer, serializer_options)
-    BroadcastService.new(method:, record: record || data, serialized_data: serialized_data || data,
-                         serializer:, serializer_options:, use_worker: false).perform
-    render(json: {
-             code: 200,
-             error: message,
-             data: serialized_data
-           }, status: 200)
+    BroadcastService.new(method: method, record: record || data, serialized_data: serialized_data || data,
+                         serializer: serializer, serializer_options: serializer_options, use_worker: false).perform
+    render(json: { code: 200, error: message, data: serialized_data }, status: 200)
   end
 
   def render_success_paginated(data = {}, serializer = nil, serializer_options = {}, extra_info = nil)
@@ -64,27 +49,19 @@ module JsonResponders
   end
 
   def render_updated(message, data = {})
-    render(json: {
-             code: 200,
-             message:,
-             data:
-           }, status: 200)
+    render(json: { code: 200, message: message, data: data }, status: 200)
   end
 
   def render_created(message, data = {}, serializer = nil, serializer_options = {})
     render(json: {
              code: 201,
-             message:,
+             message: message,
              data: serialize(data, serializer, serializer_options)
            }, status: 201)
   end
 
   def render_accepted(message, data = {})
-    render(json: {
-             code: 202,
-             message:,
-             data:
-           }, status: 202)
+    render(json: { code: 202, message: message, data: data }, status: 202)
   end
 
   private
@@ -112,11 +89,7 @@ module JsonResponders
   end
 
   def render_success_payload(message, data, serializer, serializer_options, extra_info)
-    payload = {
-      code: 200,
-      error: message,
-      data: serialize(data, serializer, serializer_options)
-    }
+    payload = { code: 200, error: message, data: serialize(data, serializer, serializer_options) }
     payload.merge!(extra_info) if extra_info.present?
     payload
   end

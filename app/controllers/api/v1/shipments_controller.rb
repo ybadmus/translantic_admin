@@ -30,13 +30,7 @@ module Api
 
       # GET : /api/v1/shipments/preview_pdf
       def preview_pdf
-        render(
-          template: 'shipments/pdf',
-          pdf: 'shipment',
-          page_size: 'A4',
-          margin: { bottom: 22 },
-          footer: { html: { template: 'pdf_document_footer' } }
-        )
+        render(template: 'shipments/pdf', pdf: 'shipment', page_size: 'A4', margin: { bottom: 22 }, footer: { html: { template: 'pdf_document_footer' } })
       end
 
       private
