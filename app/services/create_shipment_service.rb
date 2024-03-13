@@ -21,7 +21,7 @@ class CreateShipmentService < BaseShipmentService
     @shipment.save!
   rescue StandardError => e
     @errors << e.message
-    @shipment.errors.add(:base, message: e.message)
+    @shipment&.errors&.add(:base, message: e.message)
     {}
   end
 end

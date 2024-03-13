@@ -5,18 +5,18 @@
 # Table name: shipping_details
 #
 #  id                      :bigint           not null, primary key
-#  declared_value          :decimal(9, 2)    default(0.0), not null
+#  declared_value          :decimal(10, 2)   not null
 #  description             :string(500)      not null
 #  dutiable                :boolean          default(NULL)
-#  frieght_type            :integer          default("air")
-#  height                  :decimal(5, 2)    default(0.0), not null
+#  frieght_type            :integer          default(NULL)
+#  height                  :decimal(5, 2)    not null
 #  is_deleted              :boolean          default(FALSE), not null
-#  length                  :decimal(5, 2)    default(0.0), not null
-#  quantity                :integer          default(0)
+#  length                  :decimal(5, 2)    not null
+#  quantity                :integer          default(1)
 #  status                  :integer          default("submitted")
 #  tracking_number         :string(14)       not null
-#  weight                  :decimal(5, 2)    default(0.0), not null
-#  width                   :decimal(5, 2)    default(0.0), not null
+#  weight                  :decimal(5, 2)    not null
+#  width                   :decimal(5, 2)    not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  departure_id            :bigint           not null

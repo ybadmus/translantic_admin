@@ -3,7 +3,7 @@
 class CreateShippingDetails < ActiveRecord::Migration[7.0]
   def change
     create_table :shipping_details do |t|
-      t.integer(:frieght_type, default: 1, limit: 1)
+      t.integer(:frieght_type, default: 0, limit: 1)
       t.decimal(:length, null: false, precision: 5, scale: 2)
       t.decimal(:height, null: false, precision: 5, scale: 2)
       t.decimal(:width, null: false, precision: 5, scale: 2)
