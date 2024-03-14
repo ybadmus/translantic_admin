@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-class CreateShipmentService < BaseShipmentService
+class CreateShipmentService < BaseService
   attr_reader :shipment, :errors
 
   def initialize(params:)
     @shipment_params = params
+    @departure_params = params[:departure_attributes]
+    @destination_params = params[:destination_attributes]
     @errors = []
     @shipment = {}
   end
