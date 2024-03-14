@@ -36,7 +36,7 @@ module Api
       private
 
       def set_shipment
-        return render_bad_request('The tracking number you submitted is invalid, please check and try again') unless valid_tracking_number?
+        return render_bad_request('The tracking number you submitted is not valid, please check the number and try again') unless valid_tracking_number?
 
         @shipment = ShippingDetail.includes(:departure, :destination, :incoterm, :location, :receiver, :shipper,
                                             :shipping_information).find_by!(tracking_number: params[:order_number])

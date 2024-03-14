@@ -13,35 +13,58 @@
   <% end %>
 
   <form>
-    <p class="text-xs font-medium mb-5 mt-2">Quote</p>
-
     <div class="grid md:grid-cols-2 md:gap-6">
-      <% if action_name != 'create' %>
-        <div class="relative z-0 w-full mb-5 group">
-            <label for="status" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Status</label>
-
-            <%= form.select :status, Quote.statuses.collect { |q| [ q[0].capitalize.gsub("_", " "), q[0] ] }, { include_blank: "Choose a new status" }, { class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer" } %>
-        </div>
-      <% end %>
       <div class="relative z-0 w-full mb-5 group">
-          <%= form.number_field :total_gross_weight, min: 0, step: 0.01, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true, placeholder: '' %>
+          <label for="status" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Status</label>
+
+          <%= form.select :status, Quote.statuses.collect { |q| [ q[0].capitalize.gsub("_", " "), q[0] ] }, { include_blank: "Choose a new status" }, { class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer" } %>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+          <%= form.number_field :total_gross_weight, min: 0, step: 0.1, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true, placeholder: '' %>
 
           <label for="total_gross_weight" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Total gross weight (kg)</label>
       </div>
     </div>
 
-    <div class="grid md:grid-cols-2 md:gap-6">
-      <div class="relative z-0 w-full mb-5 group">
-          <%= form.text_field :departure_city, class: 'block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', placeholder: '', autocomplete: 'off', required: true %>
+    <%= form.fields_for :departure do |departure_form| %>
 
-          <label for="departure" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">City of departure</label>
-      </div>
-      <div class="relative z-0 w-full mb-5 group">
-          <%= form.text_field :destination_city, class: 'block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', placeholder: '', autocomplete: 'off', required: true %>
+      <p class="text-xs font-medium mb-2 mt-2">Departure</p>
 
-          <label for="destination" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Delivery city</label>
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-5 group">
+            <%= departure_form.text_field :city, class: 'block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', placeholder: '', autocomplete: 'off', required: true %>
+
+            <label for="city" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name of city</label>
+        </div>
+
+        <div class="relative z-0 w-full mb-5 group">
+            <%= departure_form.text_field :country, class: 'block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', placeholder: '', autocomplete: 'off', required: false %>
+
+            <label for="country" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">country</label>
+        </div>
       </div>
-    </div>
+
+    <% end %>
+
+    <%= form.fields_for :destination do |destination_form| %>
+
+      <p class="text-xs font-medium mb-2 mt-2">Destination</p>
+
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-5 group">
+            <%= destination_form.text_field :city, class: 'block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', placeholder: '', autocomplete: 'off', required: true %>
+
+            <label for="city" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name of city</label>
+        </div>
+
+        <div class="relative z-0 w-full mb-5 group">
+            <%= destination_form.text_field :country, class: 'block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer', placeholder: '', autocomplete: 'off', required: false %>
+
+            <label for="country" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">country</label>
+        </div>
+      </div>
+
+    <% end %>
 
     <div class="grid md:grid-cols-2 md:gap-6">
       <div class="relative z-0 w-full mb-5 group">
@@ -60,12 +83,12 @@
 
     <div class="grid md:grid-cols-2 md:gap-6">
       <div class="relative z-0 w-full mb-5 group">
-          <%= form.number_field :height, min: 0, step: 0.01, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true %>
+          <%= form.number_field :height, min: 0, step: 0.1, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true, placeholder: '' %>
 
           <label for="height" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Height (ft)</label>
       </div>
       <div class="relative z-0 w-full mb-5 group">
-          <%= form.number_field :length, min: 0, step: 0.01, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true, placeholder: '' %>
+          <%= form.number_field :length, min: 0, step: 0.1, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true, placeholder: '' %>
 
           <label for="length" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Length (ft)</label>
       </div>
@@ -73,7 +96,7 @@
 
     <div class="grid md:grid-cols-2 md:gap-6">
       <div class="relative z-0 w-full mb-5 group">
-          <%= form.number_field :width, min: 0, step: 0.01, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true, placeholder: '' %>
+          <%= form.number_field :width, min: 0, step: 0.1, class: "block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer", required: true, placeholder: '' %>
 
           <label for="width" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Width (ft)</label>
       </div>
@@ -110,9 +133,9 @@
         <%= form.text_area :message, cols: 20, rows: 6, class: "block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", required: true, placeholder: "Write your message here..." %>
     </div>
 
-    <%= form.submit "Save", class: 'text-white bg-blue-700 hover:bg-blue-800 rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium w-full sm:w-auto px-5 py-2 my-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
+    <%= form.submit "Save", class: 'text-white bg-blue-700 hover:bg-blue-800 rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium w-full sm:w-auto px-4 py-2 my-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
 
-    <%= link_to "Back to quotes", quotes_path, class: "rounded-lg font-medium w-full sm:w-auto px-5 py-2 my-3 text-center bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to quotes", quotes_path, class: "rounded-lg font-medium w-full sm:w-auto px-4 py-2 my-3 text-center bg-gray-100 inline-block font-medium" %>
 
   </form>
 

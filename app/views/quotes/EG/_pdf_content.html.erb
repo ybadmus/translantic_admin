@@ -4,7 +4,7 @@
       <td>
         <div class="logo-box">
           <%= wicked_pdf_image_tag 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg', alt: 'Translantics Logo', class: 'logo' %>
-          <div style="float:left;width:400px;"><p class="title" style="text-align:center;font-weight:bold;">TRANSLANTICS SHIPPING SERVICES</p></div>
+          <div style="float:left;width:420px;"><p class="title" style="text-align:center;font-weight:bold;">&nbsp;TRANSLANTICS SHIPPING SERVICES</p></div>
         </div>
       </td>
       <td>
@@ -32,11 +32,11 @@
           </div>
           <div>
             <p class="text-left-grey">Departure: </p>
-            <p style="padding-left: 15px;"><%= @quote.departure_city %>, <%= @quote.departure.country %></p>
+            <p style="padding-left: 15px;"><%= @quote.departure.city %>, <%= @quote.departure.country %></p>
           </div>
           <div>
             <p class="text-left-grey">Destination: </p>
-            <p style="padding-left: 15px;"><%= @quote.destination_city %>, <%= @quote.destination.country %></p>
+            <p style="padding-left: 15px;"><%= @quote.destination.city %>, <%= @quote.destination.country %></p>
           </div>
           <div>
             <p class="text-left-grey">Incoterm: </p>

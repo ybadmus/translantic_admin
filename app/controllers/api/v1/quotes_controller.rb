@@ -5,7 +5,7 @@ module Api
     class QuotesController < ApiController
       # POST : /api/v1/{quotes}
       def create
-        service = CreateQuoteService.new(quote_params: quote_params, quoter_params: quoter_params)
+        service = CreateQuoteService.new(params: quote_params)
         service.perform
         @quote = service.quote
 
@@ -20,12 +20,7 @@ module Api
       private
 
       def quote_params
-        params.require(:quote).permit(:frieght_type, :dimension, :message, :total_gross_weight,
-                                      :incoterm_id, :destination, :departure)
-      end
-
-      def quoter_params
-        params.require(:quote).permit(:name, :email, :phone)
+        params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, departure_attributes: %i[city country], destination_attributes: %i[city country], quoter_attributes: %i[name email phone])
       end
     end
   end
