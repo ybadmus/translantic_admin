@@ -133,9 +133,9 @@
         <%= form.text_area :message, cols: 20, rows: 6, class: "block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", required: true, placeholder: "Write your message here..." %>
     </div>
 
-    <%= form.submit "Save", class: 'text-white bg-blue-700 hover:bg-blue-800 rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium w-full sm:w-auto px-4 py-2 my-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
+    <%= form.submit "Save", class: 'text-white bg-blue-700 hover:bg-blue-800 rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium w-full sm:w-auto px-4 py-2 my-3 text-sm text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
 
-    <%= link_to "Back to quotes", quotes_path, class: "rounded-lg font-medium w-full sm:w-auto px-4 py-2 my-3 text-center bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to quotes", quotes_path, class: "rounded-lg font-medium w-full text-sm sm:w-auto px-4 py-2 my-3 text-center bg-gray-100 inline-block font-medium" %>
 
   </form>
 
