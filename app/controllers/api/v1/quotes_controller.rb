@@ -9,7 +9,7 @@ module Api
         service.perform
         @quote = service.quote
 
-        if @quote.save
+        if service.errors.blank?
           QuoteMailer.with(quote: @quote).new_quote.deliver_later
           render_success('success', @quote, QuoteSerializer)
         else
@@ -20,7 +20,9 @@ module Api
       private
 
       def quote_params
-        params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, departure_attributes: %i[city country], destination_attributes: %i[city country], quoter_attributes: %i[name email phone])
+        params.permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, :departure, :destination, :name, :email, :phone, departure_attributes: %i[city country], destination_attributes: %i[city country], quoter_attributes: %i[name email phone])
+
+        # params.require(:quote).permit(:frieght_type, :height, :length, :width, :message, :status, :total_gross_weight, :incoterm_id, :departure, :destination, :name, :email, :phone, departure_attributes: %i[city country], destination_attributes: %i[city country], quoter_attributes: %i[name email phone])
       end
     end
   end
