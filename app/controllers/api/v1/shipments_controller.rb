@@ -15,7 +15,7 @@ module Api
         render_success('success', shipment, ShipmentSerializer)
       end
 
-      # GET : /api/v1/shipments/verify
+      # POST : /api/v1/shipments/verify
       def verify
         render_success('success', @shipment, ShipmentSerializer)
       end

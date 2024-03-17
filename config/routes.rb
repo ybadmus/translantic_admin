@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :shipments do
         collection do
-          get :verify
+          post :verify
           get :send_pdf_email
           get :preview_pdf
         end

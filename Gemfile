@@ -99,3 +99,5 @@ gem 'wkhtmltopdf-binary', '~> 0.12.6.6'
 gem 'sassc-rails'
 
 gem 'active_model_serializers', '~> 0.10.2'
+
+gem 'rack-cors'
