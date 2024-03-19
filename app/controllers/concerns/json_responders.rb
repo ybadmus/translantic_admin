@@ -29,7 +29,7 @@ module JsonResponders
   end
 
   def render_unauthorized(message)
-    render(json: { code: 401, error: message }, status: :unauthorized)
+    render(json: { code: 401, message: message }, status: :unauthorized)
   end
 
   def render_success(message, data = {}, serializer = nil, serializer_options = {}, extra_info = nil)
@@ -41,7 +41,7 @@ module JsonResponders
     serialized_data = serialize(data, serializer, serializer_options)
     BroadcastService.new(method: method, record: record || data, serialized_data: serialized_data || data,
                          serializer: serializer, serializer_options: serializer_options, use_worker: false).perform
-    render(json: { code: 200, error: message, data: serialized_data }, status: 200)
+    render(json: { code: 200, message: message, data: serialized_data }, status: 200)
   end
 
   def render_success_paginated(data = {}, serializer = nil, serializer_options = {}, extra_info = nil)
@@ -89,7 +89,7 @@ module JsonResponders
   end
 
   def render_success_payload(message, data, serializer, serializer_options, extra_info)
-    payload = { code: 200, error: message, data: serialize(data, serializer, serializer_options) }
+    payload = { code: 200, message: message, data: serialize(data, serializer, serializer_options) }
     payload.merge!(extra_info) if extra_info.present?
     payload
   end
