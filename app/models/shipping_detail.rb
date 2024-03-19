@@ -8,7 +8,7 @@
 #  declared_value          :decimal(10, 2)   not null
 #  description             :string(500)      not null
 #  dutiable                :boolean          default(NULL)
-#  frieght_type            :integer          default(NULL)
+#  frieght_type            :integer          default("air")
 #  height                  :decimal(5, 2)    not null
 #  is_deleted              :boolean          default(FALSE), not null
 #  length                  :decimal(5, 2)    not null
