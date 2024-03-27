@@ -10,7 +10,7 @@ module ExceptionHandler
   end
 
   def record_not_found
-    render_not_found("Couldn't find Shipment with tracking number #{params[:order_number]}")
+    render_not_found("Couldn't find order with tracking number #{params[:order_number]}")
   end
 
   def user_not_authorized

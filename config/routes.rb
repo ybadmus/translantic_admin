@@ -41,5 +41,5 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root to: 'dashboard#index'
+  root to: 'shipments#index'
 end

@@ -75,10 +75,10 @@ Quote.create({ frieght_type: :land, status: :delivered, height: 60.00, width: 31
 Quote.create({ frieght_type: :land, status: :approved, height: 100.00, width: 200.00, length: 90.00,
                message: Faker::Lorem.sentence(word_count: 100), total_gross_weight: 58.00, departure_id: Location.find(8).id, destination_id: Location.find(10).id, incoterm_id: Incoterm.last.id, quoter_id: Quoter.third.id })
 
-ShippingDetail.create({ declared_value: 15_000.00, description: Faker::Lorem.sentence(word_count: 50), dutiable: :yes,
+ShippingDetail.create({ declared_value: 15_000.00, description: Faker::Lorem.sentence(word_count: 10), dutiable: :yes,
                         frieght_type: :sea, height: 15.00, width: 35.00, length: 90.00, quantity: 5, shipper_id: Shipper.first.id, departure_id: Location.third.id, destination_id: Location.find(14).id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.first.id, status: :arrived_at_our_facility, weight: 20.00, location_id: Location.find(10).id, receiver_id: Receiver.first.id })
 
-ShippingDetail.create({ declared_value: 7000.00, description: Faker::Lorem.sentence(word_count: 50), dutiable: :no,
+ShippingDetail.create({ declared_value: 7000.00, description: Faker::Lorem.sentence(word_count: 5), dutiable: :no,
                         frieght_type: :air, weight: 200.00, height: 15.00, width: 35.00, length: 90.00, quantity: 5, shipper_id: Shipper.second.id, departure_id: Location.second.id, destination_id: Location.find(15).id, incoterm_id: Incoterm.first.id, shipping_information_id: ShippingInformation.second.id, status: :in_transit, location_id: Location.find(11).id, receiver_id: Receiver.second.id })
 
 ShippingDetail.create({ declared_value: 210_000.00, description: Faker::Lorem.sentence(word_count: 50), dutiable: :yes,
