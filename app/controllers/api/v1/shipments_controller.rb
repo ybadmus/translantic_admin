@@ -49,7 +49,7 @@ module Api
       def authorize_user!
         return if either_recipient_or_sender?
 
-        render_unauthorized('The email submitted does not match the email associated with the order')
+        render_unauthorized('The email submitted is not linked with the order')
       end
 
       def valid_tracking_number?

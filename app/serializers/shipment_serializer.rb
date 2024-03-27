@@ -1,11 +1,22 @@
 # frozen_string_literal: true
 
 class ShipmentSerializer < ActiveModel::Serializer
-  attributes :id, :length, :width, :height, :declared_value, :description, :dutiable, :frieght_type, :status,
-             :tracking_number, :shipper, :receiver, :incoterm, :destination, :departure, :location, :shipping_information, :primary_address
+  attributes :id, :length, :width, :height, :declared_value, :description, :dutiable, :frieght_type, :status, :tracking_number, :shipper, :receiver, :incoterm, :destination, :departure, :location, :shipping_information, :primary_address, :weight, :quantity, :created_at, :updated_at
 
   def incoterm
     object.incoterm.as_json
+  end
+
+  def status
+    object.status&.tr('_', ' ')&.capitalize
+  end
+
+  def declared_value
+    ActionController::Base.helpers.number_to_currency(object.declared_value, precision: 2)
+  end
+
+  def frieght_type
+    object.frieght_type.capitalize
   end
 
   def receiver
@@ -34,5 +45,9 @@ class ShipmentSerializer < ActiveModel::Serializer
 
   def primary_address
     object.shipping_information.address_line1
+  end
+
+  def created_at
+    object.created_at.strftime('%m/%d/%Y, %T')
   end
 end

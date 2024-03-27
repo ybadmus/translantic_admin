@@ -4,7 +4,6 @@ class CreateQuoteService < BaseService
   attr_reader :quote, :errors
 
   def initialize(params:)
-    binding
     @quote_params = params
     @quoter_params = params[:quoter_attributes].presence || { name: params[:name], email: params[:email] }
     @departure_params = params[:departure_attributes].presence || { city: params[:departure] }
