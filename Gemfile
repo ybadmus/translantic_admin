@@ -6,13 +6,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0.8'
+gem 'rails', '~> 7.1'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
@@ -42,7 +42,7 @@ gem 'redis', '~> 4.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', require: false
+gem 'bootsnap', '~> 1.18', '>= 1.18.3'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -94,10 +94,14 @@ gem 'audited', '~> 5.4', '>= 5.4.3'
 
 gem 'wicked_pdf', '~> 2.8'
 
-gem 'wkhtmltopdf-binary', '~> 0.12.6.6'
+gem 'wkhtmltopdf-binary', '~> 0.12.6.5'
 
-gem 'sassc-rails'
+# gem 'sassc-rails'
 
 gem 'active_model_serializers', '~> 0.10.2'
 
 gem 'rack-cors'
+
+gem 'dockerfile-rails', '~> 1.6', '>= 1.6.7'
+
+gem 'yard'

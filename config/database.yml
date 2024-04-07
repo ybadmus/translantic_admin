@@ -29,12 +29,14 @@ test:
 
 production:
   <<: *default
-  database: translantics_production
-  username: translantics
-  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+  database: translantic_production
+  host: <%= ENV['MYSQL_HOST'] %>
+  port: <%= ENV['MYSQL_PORT'] %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
 
 staging:
   <<: *default
   database: translantics_staging
-  username: translantics
-  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>

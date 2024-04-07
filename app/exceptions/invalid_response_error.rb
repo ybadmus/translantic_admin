@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InvalidResponse < StandardError
+class InvalidResponseError < StandardError
   def initialize(message = 'Invalid response')
     super(message)
   end
