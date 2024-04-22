@@ -24,7 +24,7 @@ development:
   database: translantics_development
 
 test:
-  <<: *default
+  <<: *default 
   database: translantics_test
 
 production:
@@ -34,6 +34,8 @@ production:
   port: <%= ENV['MYSQL_PORT'] %>
   username: <%= ENV['MYSQL_USERNAME'] %>
   password: <%= ENV['MYSQL_PASSWORD'] %>
+  sslca: /etc/ssl/certs/ca-certificates.crt
+  ssl_mode: verify_identity
 
 staging:
   <<: *default
