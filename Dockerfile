@@ -81,9 +81,10 @@ COPY --from=build /rails /rails
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     chown -R 1000:1000 db log storage tmp
-USER 1000:1000
 
-# USER root
+# USER 1000:1000
+
+USER root
 
 # Deployment options
 ENV RAILS_LOG_TO_STDOUT="1" \
