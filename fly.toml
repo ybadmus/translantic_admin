@@ -1,20 +1,16 @@
-# fly.toml app configuration file generated for translantic-fragrant-shadow-830 on 2024-03-28T14:21:33Z
+# fly.toml app configuration file generated for translantic on 2024-04-26T05:26:18-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'translantic-fragrant-shadow-830'
-primary_region = 'mad'
+app = 'translantic'
+primary_region = 'lhr'
 console_command = '/rails/bin/rails console'
 
 [build]
 
-[processes]
-  app = './bin/rails server'
-  sidekiq = 'bundle exec sidekiq'
-
 [http_service]
-  internal_port = 3000
+  internal_port = 4000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
@@ -25,7 +21,3 @@ console_command = '/rails/bin/rails console'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[[statics]]
-  guest_path = '/translantic/public'
-  url_prefix = '/'
