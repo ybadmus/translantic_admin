@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :locations, except: %i[show]
-  resources :customers
+  # resources :customers
   resources :dashboard, only: %i[index]
   get 'dashboard/index'
   devise_for :users
