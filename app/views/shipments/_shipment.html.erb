@@ -1,8 +1,7 @@
-<tr id="<%= "#{dom_id(shipment)}_row" %>">
-
-  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+<tr id="<%= "#{dom_id(shipment)}_row" %>", class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" >
+  <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       <%= shipment.tracking_number %>
-  </th>
+  </td>
   <td class="px-6 py-4">
       <%= shipment.frieght_type.capitalize %>
   </td>
@@ -23,5 +22,4 @@
     <%= link_to "Show", shipment_path(shipment), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
     <%= link_to "Destroy", shipment_path(shipment), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "font-medium text-red-600 dark:text-red-500 hover:underline" %>
   </td>
-
 </tr>
