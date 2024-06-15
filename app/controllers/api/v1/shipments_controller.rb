@@ -53,11 +53,10 @@ module Api
       end
 
       def valid_tracking_number?
-        if params[:order_number].count('-').zero? && params[:order_number].length == 12
-          params[:order_number] = params[:order_number].scan(/.{1,4}/).join('-')
-          return true
-        end
+        return false if params[:order_number].blank?
 
+        params[:order_number].strip!
+        params[:order_number] = params[:order_number].scan(/.{1,4}/).join('-') if params[:order_number].count('-').zero? && params[:order_number].length == 12
         params[:order_number].count('-') == 2 && params[:order_number].length <= 14
       end
     end
