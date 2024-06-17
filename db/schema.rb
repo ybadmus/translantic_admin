@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -149,11 +151,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_023311) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "quotes", "customers", column: "quoter_id"
-  add_foreign_key "quotes", "locations", column: "departure_id"
-  add_foreign_key "quotes", "locations", column: "destination_id"
-  add_foreign_key "shipping_details", "customers", column: "receiver_id"
-  add_foreign_key "shipping_details", "customers", column: "shipper_id"
-  add_foreign_key "shipping_details", "locations", column: "departure_id"
-  add_foreign_key "shipping_details", "locations", column: "destination_id"
+  add_foreign_key 'quotes', 'customers', column: 'quoter_id'
+  add_foreign_key 'quotes', 'locations', column: 'departure_id'
+  add_foreign_key 'quotes', 'locations', column: 'destination_id'
+  add_foreign_key 'shipping_details', 'customers', column: 'receiver_id'
+  add_foreign_key 'shipping_details', 'customers', column: 'shipper_id'
+  add_foreign_key 'shipping_details', 'locations', column: 'departure_id'
+  add_foreign_key 'shipping_details', 'locations', column: 'destination_id'
 end

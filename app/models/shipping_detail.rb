@@ -95,7 +95,7 @@ class ShippingDetail < ApplicationRecord
 
     loop do
       tracking_number = SecureRandom.random_number(10**12).to_s
-      return tracking_number.scan(/.{1,4}/).join('-') unless ShippingDetail.exists?(tracking_number: tracking_number)
+      return tracking_number.scan(/.{1,4}/).join('-') unless ShippingDetail.exists?(tracking_number:)
     end
   end
 end
