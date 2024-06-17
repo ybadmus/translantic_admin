@@ -16,17 +16,10 @@ ENV BUNDLE_DEPLOYMENT="1" \
     PORT="4000" \
     REDIS_PORT="16679" \
     REDIS_URL="redis://host.docker.internal:16679" \
-<<<<<<< HEAD
     MYSQL_HOST="gateway01.eu-central-1.prod.aws.tidbcloud.com" \
     MYSQL_PORT="4000" \
     MYSQL_USERNAME="3KZuxZRrtuTqZ1A.root" \
     MYSQL_PASSWORD="PJk55GragUKiQi0F"
-=======
-    MYSQL_HOST="host.docker.internal" \
-    MYSQL_PORT="3306" \
-    MYSQL_USERNAME="translantic" \
-    MYSQL_PASSWORD="BB.Inc_3"
->>>>>>> development
 
 # Update gems and bundler
 RUN gem update --system --no-document && \
@@ -88,16 +81,10 @@ COPY --from=build /rails /rails
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     chown -R 1000:1000 db log storage tmp
-<<<<<<< HEAD
 
 # USER 1000:1000
 
 USER root
-=======
-USER 1000:1000
-
-# USER root
->>>>>>> development
 
 # Deployment options
 ENV RAILS_LOG_TO_STDOUT="1" \
