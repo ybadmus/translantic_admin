@@ -20,9 +20,9 @@ ENV BUNDLE_DEPLOYMENT="1" \
     MYSQL_PORT="4000" \
     MYSQL_USERNAME="3KZuxZRrtuTqZ1A.root" \
     MYSQL_PASSWORD="PJk55GragUKiQi0F" \
-    SMTP_USERNAME=admin@allseasconsortium.com \
-    SMTP_PASSWORD=Spoilthere@2024 \
-    SMTP_ADDRESS=mail.privateemail.com
+    SMTP_USERNAME="admin@allseasconsortium.com" \
+    SMTP_PASSWORD="Spoilthere@2024" \
+    SMTP_ADDRESS="mail.privateemail.com"
 
 # Update gems and bundler
 RUN gem update --system --no-document && \
