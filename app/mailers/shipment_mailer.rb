@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ShipmentMailer < ApplicationMailer
-  default from: 'collection@translantics.com'
+  default from: 'admin@allseasconsortium.com'
 
   def new_shipment
     @shipment = params[:shipment]

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuoteMailer < ApplicationMailer
-  default from: 'collection@translanticlogistics.com'
+  default from: 'admin@allseasconsortium.com'
 
   def new_quote
     @quote = params[:quote]
