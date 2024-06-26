@@ -68,7 +68,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method ||= :smtp
   config.action_mailer.default charset: 'utf-8'
@@ -97,22 +97,25 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new($stdout)
+    logger.formatter = config.log_formatter
+    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  end
+
   # if ENV['RAILS_LOG_TO_STDOUT'].present?
-  #   logger           = ActiveSupport::Logger.new($stdout)
-  #   logger.formatter = config.log_formatter
-  #   config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  #   config.rails_semantic_logger.format = :default
+  #   $stdout.sync = true
+  #   config.rails_semantic_logger.add_file_appender = false
+  #   config.semantic_logger.add_appender(
+  #     io: $stdout,
+  #     formatter: config.rails_semantic_logger.format,
+  #     application: Rails.application.class.module_parent_name
+  #   )
   # end
 
-  if ENV['RAILS_LOG_TO_STDOUT'].present?
-    config.rails_semantic_logger.format = :default
-    $stdout.sync = true
-    config.rails_semantic_logger.add_file_appender = false
-    config.semantic_logger.add_appender(
-      io: $stdout,
-      formatter: config.rails_semantic_logger.format,
-      application: Rails.application.class.module_parent_name
-    )
-  end
+  # Highlight code that triggered database queries in logs.
+  config.active_record.verbose_query_logs = true
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
