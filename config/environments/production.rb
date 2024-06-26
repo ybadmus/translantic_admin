@@ -72,7 +72,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method ||= :smtp
   config.action_mailer.default charset: 'utf-8'
-  config.action_mailer.default_url_options = { host: 'allseasconsortium.com' }
+  config.action_mailer.default_url_options = { host: 'admin.allseasconsortium.com' }
 
   config.action_mailer.smtp_settings = {
     address: ENV.fetch('SMTP_ADDRESS'),
