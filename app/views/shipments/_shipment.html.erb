@@ -3,7 +3,7 @@
       <%= shipment.tracking_number %>
   </td>
   <td class="px-6 py-4">
-      <%= shipment.frieght_type.capitalize %>
+      <%= shipment.frieght_type&.capitalize %>
   </td>
   <td class="px-6 py-4">
       <%= shipment.departure.city %>
